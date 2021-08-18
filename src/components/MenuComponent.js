@@ -44,7 +44,7 @@ class Menu extends Component {
           label: "",
           price: "2.99",
           description:
-            "A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms"
+            "A delectablee, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms"
         }
       ]
     };
