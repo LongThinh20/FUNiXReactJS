@@ -1,42 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { Navbar, NavbarBrand } from "reactstrap";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  NavbarText,
+  Container
+} from "reactstrap";
+
 import Menu from "./components/MenuComponent";
 import { STAFFS } from "./shared/staffs";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <Navbar dark color="primary">
-//         <div className="container">
-//           <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-//         </div>
-//       </Navbar>
-//       <Menu />
-//     </div>
-//   );
-// }
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
 
-// export default App;
+  const toggle = () => setIsOpen(!isOpen);
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      staffs: STAFFS
-    };
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar>
-        <Menu staffs={this.state.staffs} />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Navbar color="primary" dark expand="md">
+        <Container>
+          <NavbarBrand href="/">Ứng dụng quản lý nhân viên</NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="#">
+                  <i class="fa fa-users"></i>Nhân Viên
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#">
+                  <i class="fa fa-building"></i>Phòng Ban
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <NavbarText>
+              <i class="fa fa-money-bill-alt"></i> Bảng Lương
+            </NavbarText>
+          </Collapse>
+        </Container>
+      </Navbar>
+      <Menu staffs={STAFFS} />
+    </div>
+  );
 }
+
+export default App;

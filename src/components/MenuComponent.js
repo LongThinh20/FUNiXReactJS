@@ -20,7 +20,6 @@ class Menu extends Component {
     if (staff != null)
       return (
         <Card>
-          <CardImg top width="100%" src={staff.image} alt="" />
           <CardBody>
             <CardTitle tag="h5">Họ và tên: {staff.name}</CardTitle>
             <CardText>
