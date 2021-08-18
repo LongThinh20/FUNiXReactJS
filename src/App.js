@@ -8,7 +8,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText,
+  FormGroup,
+  Label,
+  Input,
   Container
 } from "reactstrap";
 
@@ -17,8 +19,8 @@ import { STAFFS } from "./shared/staffs";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+  const [rowIndex, setRowIndex] = useState();
 
   return (
     <div className="App">
@@ -29,23 +31,41 @@ function App() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="#">
-                  <i class="fa fa-users"></i>Nhân Viên
+                <NavLink href="#" active>
+                  <i className="fa fa-users"></i>Nhân Viên
+                </NavLink>
+              </NavItem>
+              <NavItem href="#">
+                <NavLink>
+                  <i className="fa fa-building"></i>Phòng Ban
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#">
-                  <i class="fa fa-building"></i>Phòng Ban
+                  <i className="fa fa-money-check"></i> Bảng Lương
                 </NavLink>
               </NavItem>
             </Nav>
-            <NavbarText>
-              <i class="fa fa-money-bill-alt"></i> Bảng Lương
-            </NavbarText>
           </Collapse>
         </Container>
       </Navbar>
-      <Menu staffs={STAFFS} />
+      <Container>
+        <FormGroup>
+          <Label for="exampleSelect">Chọn số cột hiển thị</Label>
+          <Input
+            type="select"
+            name="select"
+            id="exampleSelect"
+            onChange={(e) => setRowIndex(e.target.value)}
+          >
+            <option></option>
+            <option value="12">1</option>
+            <option value="3">2</option>
+          </Input>
+        </FormGroup>
+      </Container>
+
+      <Menu staffs={STAFFS} rowIndex={rowIndex} />
     </div>
   );
 }

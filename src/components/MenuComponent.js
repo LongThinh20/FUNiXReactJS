@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import dateFormat from "dateformat";
 
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import { Card, CardText, CardBody, CardTitle } from "reactstrap";
 
 class Menu extends Component {
   constructor(props) {
@@ -40,7 +40,10 @@ class Menu extends Component {
   render() {
     const menu = this.props.staffs.map((staff) => {
       return (
-        <div className="col-12 col-md-5 m-1" key={staff.id}>
+        <div
+          className={`col-12 col-md-5 col-lg-${this.props.rowIndex} m-1`}
+          key={staff.id}
+        >
           <Card onClick={() => this.onStaffSelect(staff)}>
             <CardTitle>{staff.name}</CardTitle>
           </Card>
