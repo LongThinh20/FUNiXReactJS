@@ -51,16 +51,18 @@ function App() {
       </Navbar>
       <Container>
         <FormGroup>
-          <Label for="exampleSelect">Chọn số cột hiển thị</Label>
+          <Label for="exampleSelect">Số cột muốn hiển thị</Label>
           <Input
             type="select"
             name="select"
             id="exampleSelect"
             onChange={(e) => setRowIndex(e.target.value)}
           >
-            <option></option>
+            <option>- Chọn số cột hiển thị -</option>
             <option value="12">1</option>
-            <option value="3">2</option>
+            <option value="6">2</option>
+            <option value="4">3</option>
+            <option value="3">4</option>
           </Input>
         </FormGroup>
       </Container>

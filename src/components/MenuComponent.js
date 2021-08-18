@@ -41,11 +41,11 @@ class Menu extends Component {
     const menu = this.props.staffs.map((staff) => {
       return (
         <div
-          className={`col-12 col-md-5 col-lg-${this.props.rowIndex} m-1`}
+          className={`col-12 col-md-5 col-lg-${this.props.rowIndex} mt-2 `}
           key={staff.id}
         >
           <Card onClick={() => this.onStaffSelect(staff)}>
-            <CardTitle>{staff.name}</CardTitle>
+            <CardTitle className="ml-4"> {staff.name}</CardTitle>
           </Card>
         </div>
       );
@@ -55,7 +55,7 @@ class Menu extends Component {
       <div className="container">
         <div className="row">{menu}</div>
         <div className="row">
-          <div className="col-12 col-md-5 m-1">
+          <div className="col-12 col-md-5 mt-4">
             {this.renderStaff(this.state.selectedStaff)}
           </div>
         </div>
