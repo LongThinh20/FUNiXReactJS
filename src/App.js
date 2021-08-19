@@ -25,6 +25,10 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [rowIndex, setRowIndex] = useState();
+  const navStyle = {
+    color: "white",
+    fontSize: "20px"
+  };
 
   return (
     <div className="App">
@@ -37,15 +41,13 @@ function App() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="#" active>
-                  Nhân Viên
-                </NavLink>
+                <NavLink href="#">NHÂN VIÊN</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Phòng Ban</NavLink>
+                <NavLink href="#">PHÒNG BAN</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Bảng Lương</NavLink>
+                <NavLink href="#">BẢNG LƯƠNG</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -53,21 +55,24 @@ function App() {
       </Navbar>
       <section id="content">
         <Container>
+          <h3 className="text_gray">Nhân viên</h3>
           <div className="row">
-            <div className="col">
-              <h3>Nhân viên</h3>
+            <div className="col-2">
+              <Button color="info" className="btn_green">
+                THÊM NHÂN VIÊN
+              </Button>
             </div>
-            <div className="col">
+            <div className="col ">
               <InputGroup>
                 <Input />
                 <InputGroupAddon addonType="prepend">
-                  <Button>
+                  <Button color="info btn_green">
                     <i className="fa fa-search" />
                   </Button>
                 </InputGroupAddon>
               </InputGroup>
             </div>
-            <div className="col-3 text-center">
+            <div className="col-2 text-center">
               <FormGroup>
                 <Label for="exampleSelect">Số cột muốn hiển thị</Label>
                 <Input
@@ -127,7 +132,7 @@ function App() {
               </ul>
             </div>
           </div>
-          <p className="copy">Copyright 2021 by Dao Long Thinh</p>
+          <p className="text_white">Copyright 2021 by Dao Long Thinh</p>
         </Container>
       </footer>
     </div>
