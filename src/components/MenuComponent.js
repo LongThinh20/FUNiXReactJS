@@ -45,7 +45,7 @@ class Menu extends Component {
           key={staff.id}
         >
           <Card onClick={() => this.onStaffSelect(staff)}>
-            <CardTitle className="ml-4"> {staff.name}</CardTitle>
+            <CardTitle className="text-center p-1">{staff.name}</CardTitle>
           </Card>
         </div>
       );

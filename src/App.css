@@ -2,3 +2,13 @@
   margin: 0;
   padding: 0;
 }
+
+.nav {
+  background-image: linear-gradient(
+    to right,
+    #38b6ff,
+    #38b6ff,
+    #f3ddce,
+    #f3ddce
+  );
+}
