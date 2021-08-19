@@ -28,56 +28,92 @@ function App() {
       <Navbar className="nav" expand="md">
         <Container>
           <NavbarBrand href="/">
-            <img src={logo} width={100} height={50} />
+            <img src={logo} width={120} height={"100%"} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink href="#" active>
-                  <i className="fa fa-users"></i>Nhân Viên
+                  Nhân Viên
                 </NavLink>
               </NavItem>
               <NavItem href="#">
-                <NavLink>
-                  <i className="fa fa-building"></i>Phòng Ban
-                </NavLink>
+                <NavLink>Phòng Ban</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">
-                  <i className="fa fa-money-check"></i> Bảng Lương
-                </NavLink>
+                <NavLink href="#">Bảng Lương</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
         </Container>
       </Navbar>
-      <Container>
-        <div className="row">
-          <div className="col">
-            <h1>Nhân viên</h1>
+      <section id="content">
+        <Container>
+          <div className="row">
+            <div className="col">
+              <h1>Nhân viên</h1>
+            </div>
+            <div className="col-3 text-center">
+              <FormGroup>
+                <Label for="exampleSelect">Số cột muốn hiển thị</Label>
+                <Input
+                  type="select"
+                  name="select"
+                  id="exampleSelect"
+                  onChange={(e) => setRowIndex(e.target.value)}
+                >
+                  <option>- Chọn số cột hiển thị -</option>
+                  <option value="12">1</option>
+                  <option value="6">2</option>
+                  <option value="4">3</option>
+                  <option value="3">4</option>
+                </Input>
+              </FormGroup>
+            </div>
           </div>
-          <div className="col-3 text-center">
-            <FormGroup>
-              <Label for="exampleSelect">Số cột muốn hiển thị</Label>
-              <Input
-                type="select"
-                name="select"
-                id="exampleSelect"
-                onChange={(e) => setRowIndex(e.target.value)}
-              >
-                <option>- Chọn số cột hiển thị -</option>
-                <option value="12">1</option>
-                <option value="6">2</option>
-                <option value="4">3</option>
-                <option value="3">4</option>
-              </Input>
-            </FormGroup>
-          </div>
-        </div>
-      </Container>
+        </Container>
 
-      <Menu staffs={STAFFS} rowIndex={rowIndex} />
+        <Menu staffs={STAFFS} rowIndex={rowIndex} />
+      </section>
+      <footer>
+        <Container>
+          <div className="row">
+            <div className="col-md-12 col-lg-6">
+              <h4>Địa chỉ</h4>
+              <h5>122 Cộng Hòa , Tân Bình , TP.HCM</h5>
+              <ul>
+                <li>
+                  <i class="fa fa-fax"></i>092833635
+                </li>
+                <li>
+                  <i class="fa fa-phone"></i>07262536238
+                </li>
+                <li>
+                  <i class="fa fa-envelope"></i>quanlynhanvien@gmail.com
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-12 col-lg-6">
+              <ul className="listIcon">
+                <li>
+                  <i className="fab fa-facebook-f" />
+                </li>
+                <li>
+                  <i className="fab fa-google-plus-g" />
+                </li>
+                <li>
+                  <i className="fab fa-youtube" />
+                </li>
+                <li>
+                  <i class="fab fa-twitter"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p className="copy">Copyright 2021 by Dao Long Thinh</p>
+        </Container>
+      </footer>
     </div>
   );
 }

@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
 }
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
 
 .nav {
   background-image: linear-gradient(
@@ -11,4 +17,35 @@
     #f3ddce,
     #f3ddce
   );
+}
+#content {
+  min-height: 500px;
+  padding: 30px 0;
+}
+
+footer {
+  background-image: linear-gradient(
+    to right,
+    #38b6ff,
+    #38b6ff,
+    #f3ddce,
+    #f3ddce
+  );
+  min-height: 150px;
+  padding: 20px 0;
+}
+
+footer .listIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+footer .listIcon li i {
+  font-size: 35px;
+  margin-right: 20px;
+}
+.copy {
+  text-align: center;
+  color: white;
 }
