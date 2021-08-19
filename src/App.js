@@ -11,6 +11,9 @@ import {
   FormGroup,
   Label,
   Input,
+  InputGroup,
+  InputGroupAddon,
+  Button,
   Container
 } from "reactstrap";
 
@@ -38,8 +41,8 @@ function App() {
                   Nhân Viên
                 </NavLink>
               </NavItem>
-              <NavItem href="#">
-                <NavLink>Phòng Ban</NavLink>
+              <NavItem>
+                <NavLink href="#">Phòng Ban</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#">Bảng Lương</NavLink>
@@ -52,7 +55,17 @@ function App() {
         <Container>
           <div className="row">
             <div className="col">
-              <h1>Nhân viên</h1>
+              <h3>Nhân viên</h3>
+            </div>
+            <div className="col">
+              <InputGroup>
+                <Input />
+                <InputGroupAddon addonType="prepend">
+                  <Button>
+                    <i className="fa fa-search" />
+                  </Button>
+                </InputGroupAddon>
+              </InputGroup>
             </div>
             <div className="col-3 text-center">
               <FormGroup>
@@ -84,13 +97,16 @@ function App() {
               <h5>122 Cộng Hòa , Tân Bình , TP.HCM</h5>
               <ul>
                 <li>
-                  <i class="fa fa-fax"></i>092833635
+                  <i className="fa fa-fax" />
+                  092833635
                 </li>
                 <li>
-                  <i class="fa fa-phone"></i>07262536238
+                  <i className="fa fa-phone" />
+                  07262536238
                 </li>
                 <li>
-                  <i class="fa fa-envelope"></i>quanlynhanvien@gmail.com
+                  <i className="fa fa-envelope" />
+                  quanlynhanvien@gmail.com
                 </li>
               </ul>
             </div>

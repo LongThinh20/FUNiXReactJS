@@ -19,7 +19,7 @@ a {
   );
 }
 #content {
-  min-height: 500px;
+  min-height: 615px;
   padding: 30px 0;
 }
 
@@ -31,8 +31,9 @@ footer {
     #f3ddce,
     #f3ddce
   );
-  min-height: 150px;
+  min-height: 100px;
   padding: 20px 0;
+  color: white;
 }
 
 footer .listIcon {
