@@ -31,6 +31,16 @@ a {
     var(--orange2)
   );
 }
+.nav .navbar-toggler:focus {
+  border-color: white;
+  box-shadow: none;
+}
+.nav .navbar-toggler .navbar-toggler-icon {
+  background: url("./img/format-list-bulleted_119102.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .nav .nav-item .nav-link {
   color: white;
   font-size: 22px;

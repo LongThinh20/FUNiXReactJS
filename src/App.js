@@ -64,7 +64,7 @@ function App() {
             </div>
             <div className="col ">
               <InputGroup>
-                <Input />
+                <Input placeholder="Nhập tên nhân viên muốn tìm ... " />
                 <InputGroupAddon addonType="prepend">
                   <Button color="info btn_green">
                     <i className="fa fa-search" />
@@ -74,7 +74,9 @@ function App() {
             </div>
             <div className="col-2 text-center">
               <FormGroup>
-                <Label for="exampleSelect">Số cột muốn hiển thị</Label>
+                <Label for="exampleSelect" className="text_gray">
+                  Số cột muốn hiển thị
+                </Label>
                 <Input
                   type="select"
                   name="select"
@@ -102,15 +104,15 @@ function App() {
               <h5>122 Cộng Hòa , Tân Bình , TP.HCM</h5>
               <ul>
                 <li>
-                  <i className="fa fa-fax" />
+                  <i className="fa fa-fax m-2" />
                   092833635
                 </li>
                 <li>
-                  <i className="fa fa-phone" />
+                  <i className="fa fa-phone m-2" />
                   07262536238
                 </li>
                 <li>
-                  <i className="fa fa-envelope" />
+                  <i className="fa fa-envelope m-2" />
                   quanlynhanvien@gmail.com
                 </li>
               </ul>
