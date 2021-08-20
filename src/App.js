@@ -25,23 +25,21 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [rowIndex, setRowIndex] = useState();
-  const navStyle = {
-    color: "white",
-    fontSize: "20px"
-  };
 
   return (
     <div className="App">
       <Navbar className="nav" expand="md">
         <Container>
           <NavbarBrand href="/">
-            <img src={logo} width={120} height={"100%"} />
+            <img src={logo} width={120} height={"100%"} alt="" />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="#">NHÂN VIÊN</NavLink>
+                <NavLink active href="#">
+                  NHÂN VIÊN
+                </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#">PHÒNG BAN</NavLink>
@@ -57,12 +55,12 @@ function App() {
         <Container>
           <h3 className="text_gray">Nhân viên</h3>
           <div className="row">
-            <div className="col-2">
+            <div className="mt-4 col-md-12 col-lg-2">
               <Button color="info" className="btn_green">
                 THÊM NHÂN VIÊN
               </Button>
             </div>
-            <div className="col ">
+            <div className="mt-4 col-md-12  col-lg ">
               <InputGroup>
                 <Input placeholder="Nhập tên nhân viên muốn tìm ... " />
                 <InputGroupAddon addonType="prepend">
@@ -72,7 +70,7 @@ function App() {
                 </InputGroupAddon>
               </InputGroup>
             </div>
-            <div className="col-2 text-center">
+            <div className="col-md-2 text-center">
               <FormGroup>
                 <Label for="exampleSelect" className="text_gray">
                   Số cột muốn hiển thị

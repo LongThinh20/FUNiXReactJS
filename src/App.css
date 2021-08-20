@@ -45,11 +45,17 @@ a {
   color: white;
   font-size: 22px;
 }
+.nav .nav-item .nav-link:focus {
+  color: var(--orange1);
+}
+.nav .nav-item .active {
+  color: var(--orange1);
+}
 .nav .nav-item .nav-link:hover {
   color: var(--orange1);
 }
 #content {
-  min-height: 615px;
+  min-height: 650px;
   padding: 30px 0;
 }
 #content .btn_green {
