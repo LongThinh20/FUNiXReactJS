@@ -62,7 +62,7 @@ export default function Home(props) {
             <div className="row">
               {staffs.map((staff) => {
                 return (
-                  <div className="col-sm-6 col-md-4 col-lg-2">
+                  <div className="col-6 col-sm-6 col-md-4 col-lg-2 ">
                     <Link to={`/home/${staff.id}`}>
                       <Card key={staff.id} className="mt-4">
                         <CardImg src={staff.image} alt={staff.name} />

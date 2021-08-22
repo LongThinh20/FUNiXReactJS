@@ -25,14 +25,14 @@ export default function StaffDetail(props) {
         <BreadcrumbItem active>{name}</BreadcrumbItem>
       </Breadcrumb>
       <div className="row">
-        <div className="col-lg-3">
-          <img src={image} />
+        <div className="col-sm-12 col-md-4 col-lg-3">
+          <img src={image} className="img-fluid" />
         </div>
-        <div className="col-lg-9">
+        <div className="col-sm-12 col-md-8 col-lg-9">
           <Card>
             <CardHeader className="bg-primary text-white">{name}</CardHeader>
             <CardBody>
-              <dl className="row p-1">
+              <dl className="row">
                 <dt className="col-6">Họ và tên </dt>
                 <dd className="col-6">3 Feb. 2013</dd>
                 <dt className="col-6">Major Stake Holder</dt>
