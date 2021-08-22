@@ -100,6 +100,24 @@ ul {
   font-style: italic;
   color: gray;
 }
+#department {
+  padding: 50px 0;
+  min-height: 650px;
+  background-image: url("./img/sales-team.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom right;
+}
+#department .card {
+  box-shadow: 5px 10px 18px #888888;
+}
+#department .card-title {
+  font-size: 30px;
+}
+#department .card-text {
+  font-style: italic;
+  padding-left: 20px;
+}
 .jumbotron {
   background-image: linear-gradient(
     to right,
