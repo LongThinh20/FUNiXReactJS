@@ -1,23 +1,34 @@
-import React from "react";
+import { logDOM } from "@testing-library/react";
+import { string } from "prop-types";
+import React, { useState } from "react";
 import {
   Jumbotron,
   Container,
   Button,
   InputGroup,
   InputGroupAddon,
-  Input,
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardText
+  Input
 } from "reactstrap";
 
-import { Link } from "react-router-dom";
 import team from "../img/developer-team.png";
+import StaffList from "./StaffListComponent";
 
 export default function Home(props) {
-  const staffs = props.staffs;
+  const [searchTerm, setSearchTerm] = useState();
+  const { staffs, handleChange, resultSearch } = props;
+
+  window.onclick = function () {
+    setSearchTerm("");
+    handleChange(searchTerm);
+  };
+
+  const handleSearch = () => {
+    handleChange(searchTerm);
+    if (typeof resultSearch === string) {
+      console.log(1);
+    }
+  };
+
   return (
     <section>
       <Jumbotron>
@@ -30,7 +41,9 @@ export default function Home(props) {
                 Chúng tôi mang đến cho bạn những giải phải về quản lý thông tin
                 nhân viên một cách hiệu quả.
               </p>
-              <Button className="btn">Tìm hiểu thêm</Button>
+              <Button className="btn" type="submit">
+                Tìm hiểu thêm
+              </Button>
             </div>
             <div className="img_bg col-12 col-md-6">
               <img src={team} className="img-fluid" />
@@ -42,41 +55,31 @@ export default function Home(props) {
         <Container>
           <h1>Danh sách nhân viên</h1>
           <div className="row">
-            <div className="col-12 col-md-2">
+            <div className="col-12 col-md-4">
               <Button color="info" className="btn_green">
                 THÊM NHÂN VIÊN
               </Button>
             </div>
-            <div className="col-12 col-md-5">
+            <div className="col-12 col-md-8 col-lg-5">
               <InputGroup>
-                <Input placeholder="Nhập tên nhân viên muốn tìm ... " />
+                <Input
+                  placeholder="Nhập tên nhân viên muốn tìm ... "
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <InputGroupAddon addonType="prepend">
-                  <Button color="info btn_green">
+                  <Button color="info btn_green" onClick={() => handleSearch()}>
                     <i className="fa fa-search" />
                   </Button>
                 </InputGroupAddon>
               </InputGroup>
             </div>
           </div>
-          <section>
-            <div className="row">
-              {staffs.map((staff) => {
-                return (
-                  <div className="col-6 col-sm-6 col-md-4 col-lg-2 ">
-                    <Link to={`/home/${staff.id}`}>
-                      <Card key={staff.id} className="mt-4">
-                        <CardImg src={staff.image} alt={staff.name} />
-                        <CardBody>
-                          <CardTitle>{staff.name}</CardTitle>
-                          <CardText>{staff.description}</CardText>
-                        </CardBody>
-                      </Card>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+          {resultSearch.length == 0 ? (
+            <StaffList staffs={staffs} />
+          ) : (
+            <StaffList staffs={resultSearch} />
+          )}
         </Container>
       </div>
     </section>

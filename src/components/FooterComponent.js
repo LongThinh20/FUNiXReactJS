@@ -37,7 +37,7 @@ export default function Footer() {
                   <i className="fab fa-youtube" />
                 </li>
                 <li>
-                  <i class="fab fa-twitter"></i>
+                  <i className="fab fa-twitter" />
                 </li>
               </ul>
             </div>

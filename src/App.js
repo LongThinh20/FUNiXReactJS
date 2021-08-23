@@ -5,11 +5,13 @@ import Main from "./components/MainComponent";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Main />
-      </div>
-    </BrowserRouter>
+    <React.StrictMode>
+      <BrowserRouter>
+        <div className="App">
+          <Main />
+        </div>
+      </BrowserRouter>
+    </React.StrictMode>
   );
 }
 

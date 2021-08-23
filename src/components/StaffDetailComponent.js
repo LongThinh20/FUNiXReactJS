@@ -3,11 +3,7 @@ import {
   Container,
   Breadcrumb,
   BreadcrumbItem,
-  CardText,
   Card,
-  CardTitle,
-  CardImg,
-  CardHeader,
   CardBody
 } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -30,7 +26,7 @@ export default function StaffDetail(props) {
           <h1>Thông tin nhân viên</h1>
           <div className="row">
             <div className="col-sm-12 col-md-4 col-lg-3">
-              <img src={image} className="img-fluid" />
+              <img src={image} className="img-fluid" alt="" />
             </div>
             <div className="col-sm-12 col-md-8 col-lg-9">
               <Card>

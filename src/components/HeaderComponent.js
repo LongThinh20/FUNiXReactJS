@@ -6,8 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  Container,
-  Jumbotron
+  Container
 } from "reactstrap";
 import logo from "../img/logo.png";
 import { NavLink } from "react-router-dom";
