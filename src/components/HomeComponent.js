@@ -1,5 +1,3 @@
-import { logDOM } from "@testing-library/react";
-import { string } from "prop-types";
 import React, { useState } from "react";
 import {
   Jumbotron,
@@ -23,10 +21,8 @@ export default function Home(props) {
   };
 
   const handleSearch = () => {
+    if (!handleChange) return;
     handleChange(searchTerm);
-    if (typeof resultSearch === string) {
-      console.log(1);
-    }
   };
 
   return (
@@ -46,7 +42,7 @@ export default function Home(props) {
               </Button>
             </div>
             <div className="img_bg col-12 col-md-6">
-              <img src={team} className="img-fluid" />
+              <img src={team} className="img-fluid" alt="" />
             </div>
           </div>
         </div>
@@ -75,7 +71,7 @@ export default function Home(props) {
               </InputGroup>
             </div>
           </div>
-          {resultSearch.length == 0 ? (
+          {resultSearch.length === 0 ? (
             <StaffList staffs={staffs} />
           ) : (
             <StaffList staffs={resultSearch} />

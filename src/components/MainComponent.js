@@ -17,11 +17,9 @@ const Main = () => {
         ? STAFFS.filter((staff) =>
             staff.name.toUpperCase().includes(value.toUpperCase())
           )
-        : ""
+        : []
     );
   };
-
-  console.log(typeof resultSearch);
 
   const StaffWithId = ({ match }) => {
     return (

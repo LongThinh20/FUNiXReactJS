@@ -1,18 +1,40 @@
 import React from "react";
-import {
-  Container,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Breadcrumb,
-  BreadcrumbItem
-} from "reactstrap";
+import { Container, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import SalaryList from "./SalaryListComponent";
 
 export default function Salary(props) {
   const staffs = props.staffs;
   const salaryBasic = 3000000;
+
+  const handleSortByIdIncrease = () => {
+    staffs.sort((a, b) => b.id - a.id);
+  };
+  const handleSortByIdDecrease = () => {
+    staffs.sort((a, b) => a.id - b.id);
+  };
+  const handleSortBySalaryIncrease = () => {
+    staffs.sort((a, b) => {
+      if (
+        a.salaryScale * salaryBasic + 200000 * a.overTime >
+        b.salaryScale * salaryBasic + 200000 * b.overTime
+      ) {
+        return -1;
+      }
+      return 0;
+    });
+  };
+  const handleSortBySalaryDecrease = () => {
+    staffs.sort((a, b) => {
+      if (
+        a.salaryScale * salaryBasic + 200000 * a.overTime <
+        b.salaryScale * salaryBasic + 200000 * b.overTime
+      ) {
+        return -1;
+      }
+      return 0;
+    });
+  };
 
   return (
     <section id="salary">
@@ -23,35 +45,34 @@ export default function Salary(props) {
           </BreadcrumbItem>
           <BreadcrumbItem>Bảng lương</BreadcrumbItem>
         </Breadcrumb>
-        <h1>Bảng lương</h1>
+
         <div className="row">
-          {staffs.map((staff) => {
-            return (
-              <div className="col-sm-12 col-md-6 col-lg-4">
-                <Card key={staff.id} className="mt-4">
-                  <CardBody>
-                    <CardTitle className="display-6 text_green">
-                      {staff.name}
-                    </CardTitle>
-                    <CardText>Mã nhân viên: {staff.id}</CardText>
-                    <CardText>Hệ số lương: {staff.salaryScale}</CardText>
-                    <CardText>Số giờ làm thêm: {staff.overTime}</CardText>
-                    <CardText className="salary_text">
-                      Lương :{" "}
-                      {Math.round(
-                        staff.salaryScale * salaryBasic +
-                          200000 * staff.overTime
-                      )
-                        .toLocaleString()
-                        .replace(/,/g, ",")}{" "}
-                      VNĐ
-                    </CardText>
-                  </CardBody>
-                </Card>
-              </div>
-            );
-          })}
+          <div className="col-12 col-md-3">
+            <h1>Bảng lương</h1>
+          </div>
+          <div className="col-12 col-md ">
+            <span>Sắp xếp theo </span>
+            <Button className="m-1" onClick={() => handleSortByIdIncrease()}>
+              Mã nhân viên giảm dần
+            </Button>
+            <Button className="m-1" onClick={() => handleSortByIdDecrease()}>
+              Mã nhân viên tăng dần
+            </Button>
+            <Button
+              className="m-1"
+              onClick={() => handleSortBySalaryIncrease()}
+            >
+              Lương giảm dần
+            </Button>
+            <Button
+              className="m-1"
+              onClick={() => handleSortBySalaryDecrease()}
+            >
+              Lương tăng dần
+            </Button>
+          </div>
         </div>
+        <SalaryList staffs={staffs} />
       </Container>
     </section>
   );

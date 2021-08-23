@@ -26,8 +26,8 @@ export default function Department(props) {
         <div className="row">
           {departments.map((item, index) => {
             return (
-              <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                <Card className="m-1" key={index}>
+              <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
+                <Card className="m-1">
                   <CardBody>
                     <CardTitle>{item.name}</CardTitle>
                     <CardText>
