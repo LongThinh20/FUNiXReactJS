@@ -52,19 +52,24 @@ export default function Home(props) {
           <h1>Danh sách nhân viên</h1>
           <div className="row">
             <div className="col-12 col-md-4">
-              <Button color="info" className="btn_green">
+              <Button color="info" className="btn_green mt-2">
                 THÊM NHÂN VIÊN
               </Button>
             </div>
             <div className="col-12 col-md-8 col-lg-5">
               <InputGroup>
                 <Input
+                  className="mt-2"
                   placeholder="Nhập tên nhân viên muốn tìm ... "
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <InputGroupAddon addonType="prepend">
-                  <Button color="info btn_green" onClick={() => handleSearch()}>
+                  <Button
+                    className="mt-2"
+                    color="info btn_green"
+                    onClick={() => handleSearch()}
+                  >
                     <i className="fa fa-search" />
                   </Button>
                 </InputGroupAddon>
