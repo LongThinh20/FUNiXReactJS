@@ -33,7 +33,7 @@ export default function Home(props) {
             <div className="col-12 col-md-6">
               <h1>Hệ thống</h1>
               <h2>Quản lý nhân viên</h2>
-              <p>
+              <p className="text-white">
                 Chúng tôi mang đến cho bạn những giải phải về quản lý thông tin
                 nhân viên một cách hiệu quả.
               </p>

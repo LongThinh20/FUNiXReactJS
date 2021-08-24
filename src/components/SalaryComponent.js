@@ -51,21 +51,35 @@ export default function Salary(props) {
             <h1>Bảng lương</h1>
           </div>
           <div className="col-12 col-md ">
-            <span>Sắp xếp theo </span>
-            <Button className="m-1" onClick={() => handleSortByIdIncrease()}>
+            <span className="text_gray font-weight-bold">Sắp xếp theo </span>
+            <Button
+              outline
+              className="m-1 "
+              color="info"
+              onClick={() => handleSortByIdIncrease()}
+            >
               Mã nhân viên giảm dần
             </Button>
-            <Button className="m-1" onClick={() => handleSortByIdDecrease()}>
+            <Button
+              outline
+              className="m-1"
+              color="info"
+              onClick={() => handleSortByIdDecrease()}
+            >
               Mã nhân viên tăng dần
             </Button>
             <Button
+              outline
               className="m-1"
+              color="info"
               onClick={() => handleSortBySalaryIncrease()}
             >
               Lương giảm dần
             </Button>
             <Button
+              outline
               className="m-1"
+              color="info"
               onClick={() => handleSortBySalaryDecrease()}
             >
               Lương tăng dần

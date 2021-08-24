@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default function SalaryList(props) {
   const salaryBasic = 3000000;
@@ -11,9 +12,11 @@ export default function SalaryList(props) {
           <div className="col-sm-12 col-md-6 col-lg-4" key={staff.id}>
             <Card className="mt-4">
               <CardBody>
-                <CardTitle className="display-6 text_green">
-                  {staff.name}
-                </CardTitle>
+                <Link to={`/home/${staff.id}`}>
+                  <CardTitle className="display-6 text_green">
+                    {staff.name}
+                  </CardTitle>
+                </Link>
                 <CardText>Mã nhân viên: {staff.id}</CardText>
                 <CardText>Hệ số lương: {staff.salaryScale}</CardText>
                 <CardText>Số giờ làm thêm: {staff.overTime}</CardText>
