@@ -86,7 +86,7 @@ export default function Salary(props) {
             </Button>
           </div>
         </div>
-        <SalaryList staffs={staffs} />
+        <SalaryList staffs={staffs} salaryBasic={salaryBasic} />
       </Container>
     </section>
   );

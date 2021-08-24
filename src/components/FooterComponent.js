@@ -28,16 +28,24 @@ export default function Footer() {
             <div className="col-md-12 col-lg-6">
               <ul className="listIcon">
                 <li>
-                  <i className="fab fa-facebook-f" />
+                  <a href="#">
+                    <i className="fab fa-facebook-f" />
+                  </a>
                 </li>
                 <li>
-                  <i className="fab fa-google-plus-g" />
+                  <a href="#">
+                    <i className="fab fa-google-plus-g" />
+                  </a>
                 </li>
                 <li>
-                  <i className="fab fa-youtube" />
+                  <a href="#">
+                    <i className="fab fa-youtube" />
+                  </a>
                 </li>
                 <li>
-                  <i className="fab fa-twitter" />
+                  <a href="#">
+                    <i className="fab fa-twitter" />
+                  </a>
                 </li>
               </ul>
             </div>

@@ -3,8 +3,7 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export default function SalaryList(props) {
-  const salaryBasic = 3000000;
-  const staffs = props.staffs;
+  const { staffs, salaryBasic } = props;
   return (
     <div className="row">
       {staffs.map((staff) => {

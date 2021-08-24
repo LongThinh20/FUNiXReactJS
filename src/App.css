@@ -201,6 +201,10 @@ footer .listIcon {
 footer .listIcon li i {
   font-size: 35px;
   margin-right: 20px;
+  color: white;
+}
+footer .listIcon li i:hover {
+  color: var(--blue2);
 }
 
 @media screen and (max-width: 992px) {
