@@ -1,39 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import SalaryList from "./SalaryListComponent";
 
 export default function Salary(props) {
   const staffs = props.staffs;
+  const [staffsLst, setStaffLst] = useState([...staffs]);
+
   const salaryBasic = 3000000;
 
   const handleSortByIdIncrease = () => {
-    staffs.sort((a, b) => b.id - a.id);
+    setStaffLst(staffsLst.sort((a, b) => b.id - a.id));
   };
   const handleSortByIdDecrease = () => {
-    staffs.sort((a, b) => a.id - b.id);
+    setStaffLst(staffsLst.sort((a, b) => a.id - b.id));
   };
   const handleSortBySalaryIncrease = () => {
-    staffs.sort((a, b) => {
-      if (
-        a.salaryScale * salaryBasic + 200000 * a.overTime >
-        b.salaryScale * salaryBasic + 200000 * b.overTime
-      ) {
-        return -1;
-      }
-      return 0;
-    });
+    setStaffLst(
+      staffsLst.sort((a, b) => {
+        if (
+          a.salaryScale * salaryBasic + 200000 * a.overTime >
+          b.salaryScale * salaryBasic + 200000 * b.overTime
+        ) {
+          return -1;
+        }
+        return 0;
+      })
+    );
   };
   const handleSortBySalaryDecrease = () => {
-    staffs.sort((a, b) => {
-      if (
-        a.salaryScale * salaryBasic + 200000 * a.overTime <
-        b.salaryScale * salaryBasic + 200000 * b.overTime
-      ) {
-        return -1;
-      }
-      return 0;
-    });
+    setStaffLst(
+      staffsLst.sort((a, b) => {
+        if (
+          a.salaryScale * salaryBasic + 200000 * a.overTime <
+          b.salaryScale * salaryBasic + 200000 * b.overTime
+        ) {
+          return -1;
+        }
+        return 0;
+      })
+    );
   };
 
   return (
@@ -47,10 +53,10 @@ export default function Salary(props) {
         </Breadcrumb>
 
         <div className="row">
-          <div className="col-12 col-md-3">
+          <div className="col-sm-12 col-md-12 col-lg-3">
             <h1>Bảng lương</h1>
           </div>
-          <div className="col-12 col-md ">
+          <div className="col-sm-12 col-md-12 col-lg-9 ">
             <span className="text_gray font-weight-bold">Sắp xếp theo </span>
             <Button
               outline
@@ -86,7 +92,7 @@ export default function Salary(props) {
             </Button>
           </div>
         </div>
-        <SalaryList staffs={staffs} salaryBasic={salaryBasic} />
+        <SalaryList staffs={staffsLst} salaryBasic={salaryBasic} />
       </Container>
     </section>
   );
