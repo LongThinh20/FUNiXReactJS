@@ -35,10 +35,10 @@ export default function StaffDetail(props) {
                     <dt className="col-6">Họ và tên: </dt>
                     <dd className="col-6">{name}</dd>
                     <dt className="col-6">Ngày sinh: </dt>
-                    <dd className="col-6"> {dateformat(doB, "dd/MM/yyyy")}</dd>
+                    <dd className="col-6"> {dateformat(doB, "dd/mm/yyyy")}</dd>
                     <dt className="col-6">Ngày vào công ty: </dt>
                     <dd className="col-6">
-                      {dateformat(startDate, "dd/MM/yyyy")}
+                      {dateformat(startDate, "dd/mm/yyyy")}
                     </dd>
                     <dt className="col-6">Phòng ban: </dt>
                     <dd className="col-6">{department.name}</dd>
