@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Jumbotron,
   Container,
@@ -16,7 +16,6 @@ import AddStaffModal from "./AddStaffModalComponent";
 export default function Home(props) {
   const { staffs, handleSearch, resultSearch } = props;
   const inputRef = useRef(null);
-  const st = "";
 
   window.onclick = () => {
     handleSearch("");
