@@ -20,11 +20,11 @@ class AddStaffModal extends Component {
       isModalOpen: false,
       name: "",
       doB: "",
-      salaryScale: "",
+      salaryScale: 1,
       startDate: "",
-      department: "",
-      annualLeave: "",
-      overTime: "",
+      department: 0,
+      annualLeave: 0,
+      overTime: 0,
       image: "/assets/images/alberto.png",
       touched: {
         name: false,
@@ -56,7 +56,7 @@ class AddStaffModal extends Component {
     });
   }
   handleAdd(event) {
-    console.log(this.state.name);
+    console.log(this.state);
     event.preventDefault();
   }
   handleBlur = (field) => (evt) => {
@@ -88,13 +88,31 @@ class AddStaffModal extends Component {
     };
 
     if (this.state.touched.name && name.length < 3) {
-      errors.name = "Họ tên chưa hợp lệ.";
+      errors.name = "Họ tên chưa hợp lệ";
+    } else if (this.state.touched.doB && doB === "") {
+      errors.doB = "Ngày sinh chưa hợp lệ";
+    } else if (this.state.touched.salaryScale && salaryScale < 1) {
+      errors.salaryScale = "Hệ số lương chưa hợp lệ";
+    } else if (this.state.touched.startDate && startDate === "") {
+      errors.startDate = "Ngày chưa  hợp lệ";
+    } else if (this.state.touched.annualLeave && annualLeave === "") {
+      errors.annualLeave = "Giá trị chưa hợp lệ";
+    } else if (this.state.touched.overTime && overTime === "") {
+      errors.overTime = "Giờ  chưa hợp lệ";
     }
     return errors;
   }
 
   render() {
-    const errors = this.validate(this.state.name);
+    const errors = this.validate(
+      this.state.name,
+      this.state.doB,
+      this.state.salaryScale,
+      this.state.startDate,
+      this.state.department,
+      this.state.annualLeave,
+      this.state.overTime
+    );
     return (
       <div>
         <Button
@@ -138,8 +156,12 @@ class AddStaffModal extends Component {
                     name="doB"
                     placeholder="dd/mm/yyyy"
                     value={this.state.doB}
+                    valid={errors.doB === ""}
+                    invalid={errors.doB !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("doB")}
                   />
+                  <FormFeedback>{errors.doB}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
@@ -153,8 +175,12 @@ class AddStaffModal extends Component {
                     name="startDate"
                     placeholder="dd/mm/yyyy"
                     value={this.state.startDate}
+                    valid={errors.startDate === ""}
+                    invalid={errors.startDate !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("startDate")}
                   />
+                  <FormFeedback>{errors.startDate}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
@@ -166,15 +192,18 @@ class AddStaffModal extends Component {
                     type="select"
                     name="department"
                     id="departments"
+                    valid={errors.department === ""}
+                    invalid={errors.department !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("department")}
                   >
-                    <option>--Chọn phòng ban--</option>
                     <option value="0">Sale</option>
                     <option value="1">HR</option>
                     <option value="2">Marketing</option>
                     <option value="3">IT</option>
                     <option value="4">Finance</option>
                   </Input>
+                  <FormFeedback>{errors.department}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
@@ -189,8 +218,12 @@ class AddStaffModal extends Component {
                     placeholder="1-->3"
                     defaultValue="1"
                     value={this.state.salaryScale}
+                    valid={errors.salaryScale === ""}
+                    invalid={errors.salaryScale !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("salaryScale")}
                   />
+                  <FormFeedback>{errors.salaryScale}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
@@ -204,8 +237,12 @@ class AddStaffModal extends Component {
                     id="annualLeave"
                     defaultValue="0"
                     value={this.state.annualLeave}
+                    valid={errors.annualLeave === ""}
+                    invalid={errors.annualLeave !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("annualLeave")}
                   />
+                  <FormFeedback>{errors.annualLeave}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
@@ -219,8 +256,13 @@ class AddStaffModal extends Component {
                     id="overTime"
                     defaultValue="0"
                     value={this.state.overTime}
+                    value={this.state.overTime}
+                    valid={errors.overTime === ""}
+                    invalid={errors.overTime !== ""}
                     onChange={this.handleInputChange}
+                    onBlur={this.handleBlur("overTime")}
                   />
+                  <FormFeedback>{errors.overTime}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
