@@ -1,31 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Jumbotron,
   Container,
   Button,
   InputGroup,
   InputGroupAddon,
-  Input
+  Input,
+  Form
 } from "reactstrap";
 
 import team from "../img/developer-team.png";
 import StaffList from "./StaffListComponent";
-import AddStaffModal from './AddStaffModalComponent'
+import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
-  const [searchTerm, setSearchTerm] = useState();
-  const { staffs, handleChange, resultSearch } = props;
+  const { staffs, handleSearch, resultSearch } = props;
+  const inputRef = useRef(null);
+  const st = "";
 
-  window.onclick = function () {
-    setSearchTerm("");
-    handleChange(searchTerm);
+  window.onclick = () => {
+    handleSearch("");
   };
 
-  const handleSearch = () => {
-    if (!handleChange) return;
-    handleChange(searchTerm);
+  const handleOnSubmit = (e) => {
+    handleSearch(inputRef.current.value);
+    e.preventDefault();
+    document.getElementById("search").value = "";
   };
-
 
   return (
     <section>
@@ -54,26 +55,28 @@ export default function Home(props) {
           <h1>Danh sách nhân viên</h1>
           <div className="row">
             <div className="col-12 col-md-4">
-             <AddStaffModal buttonLabel={'THÊM NHÂN VIÊN'}/>
+              <AddStaffModal buttonLabel={"THÊM NHÂN VIÊN"} />
             </div>
             <div className="col-12 col-md-8 col-lg-5">
-              <InputGroup>
-                <Input
-                  className="mt-2"
-                  placeholder="Nhập tên nhân viên muốn tìm ... "
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <InputGroupAddon addonType="prepend">
-                  <Button
+              <Form onSubmit={handleOnSubmit}>
+                <InputGroup>
+                  <Input
+                    id="search"
                     className="mt-2"
-                    color="info btn_green"
-                    onClick={() => handleSearch()}
-                  >
-                    <i className="fa fa-search" />
-                  </Button>
-                </InputGroupAddon>
-              </InputGroup>
+                    placeholder="Nhập tên nhân viên muốn tìm ... "
+                    innerRef={inputRef}
+                  />
+                  <InputGroupAddon addonType="prepend">
+                    <Button
+                      className="mt-2"
+                      color="info btn_green"
+                      type="submit"
+                    >
+                      <i className="fa fa-search" />
+                    </Button>
+                  </InputGroupAddon>
+                </InputGroup>
+              </Form>
             </div>
           </div>
           {resultSearch.length === 0 ? (
@@ -83,7 +86,7 @@ export default function Home(props) {
           )}
         </Container>
       </div>
-    <AddStaffModal/>
+      <AddStaffModal />
     </section>
   );
 }

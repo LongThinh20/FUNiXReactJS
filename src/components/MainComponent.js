@@ -6,23 +6,21 @@ import Home from "./HomeComponent";
 import Salary from "./SalaryComponent";
 import Department from "./DepartmentComponent";
 import StaffDetail from "./StaffDetailComponent";
-import { useSelector } from "react-redux";
+import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 
 const Main = () => {
   const [resultSearch, setResultSearch] = useState([]);
-  const STAFFS = useSelector(state => state.staffs)
-  const DEPARTMENTS = useSelector(state => state.departments)
 
-
-  const handleChange = (value) => {
-    console.log(value);
-    setResultSearch(
-      value
-        ? STAFFS.filter((staff) =>
-            staff.name.toUpperCase().includes(value.toUpperCase())
-          )
-        : []
-    );
+  const handleSearch = (value) => {
+    if (value) {
+      setResultSearch(
+        STAFFS.filter((staff) =>
+          staff.name.toUpperCase().includes(value.toUpperCase())
+        )
+      );
+    } else {
+      setResultSearch([]);
+    }
   };
 
   const StaffWithId = ({ match }) => {
@@ -34,6 +32,7 @@ const Main = () => {
       />
     );
   };
+
   return (
     <>
       <Header />
@@ -44,7 +43,7 @@ const Main = () => {
           render={() => (
             <Home
               staffs={STAFFS}
-              handleChange={handleChange}
+              handleSearch={handleSearch}
               resultSearch={resultSearch}
             />
           )}
