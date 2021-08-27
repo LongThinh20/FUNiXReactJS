@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import {
   Button,
   Modal,
@@ -34,13 +34,16 @@ class AddStaffModal extends Component {
         department: false,
         annualLeave: false,
         overTime: false
-      }
+      },
+      isFlag: false
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
+
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen
@@ -56,7 +59,10 @@ class AddStaffModal extends Component {
     });
   }
   handleAdd(event) {
+    this.setState({ isFlag: true });
+
     console.log(this.state);
+
     event.preventDefault();
   }
   handleBlur = (field) => (evt) => {
@@ -64,9 +70,14 @@ class AddStaffModal extends Component {
       touched: {
         ...this.state.touched,
         [field]: true
-      }
+      },
+      isFlag: false
     });
   };
+
+  handleReset() {
+    console.log(1);
+  }
 
   validate(
     name,
@@ -87,17 +98,38 @@ class AddStaffModal extends Component {
       overTime: ""
     };
 
+    if (this.state.isFlag && name === "") {
+      errors.name = "Chưa nhập dữ liệu";
+    }
+    if (this.state.isFlag && doB === "") {
+      errors.doB = "Chưa nhập dữ liệu";
+    }
+    if (this.state.isFlag && startDate === "") {
+      errors.startDate = "Chưa nhập dữ liệu";
+    }
+    if (this.state.isFlag && name === "") {
+      errors.name = "Họ tên không được rỗng";
+    }
     if (this.state.touched.name && name.length < 3) {
       errors.name = "Họ tên chưa hợp lệ";
-    } else if (this.state.touched.doB && doB === "") {
+    }
+
+    if (this.state.touched.doB && doB === "") {
       errors.doB = "Ngày sinh chưa hợp lệ";
-    } else if (this.state.touched.salaryScale && salaryScale < 1) {
+    }
+    if (this.state.touched.salaryScale && salaryScale < 1) {
       errors.salaryScale = "Hệ số lương chưa hợp lệ";
-    } else if (this.state.touched.startDate && startDate === "") {
+    }
+    if (this.state.touched.startDate && startDate === "") {
       errors.startDate = "Ngày chưa  hợp lệ";
-    } else if (this.state.touched.annualLeave && annualLeave === "") {
+    }
+    if (
+      this.state.touched.annualLeave &&
+      (annualLeave === "" || annualLeave < 0)
+    ) {
       errors.annualLeave = "Giá trị chưa hợp lệ";
-    } else if (this.state.touched.overTime && overTime === "") {
+    }
+    if (this.state.touched.overTime && (overTime === "" || overTime < 0)) {
       errors.overTime = "Giờ  chưa hợp lệ";
     }
     return errors;
@@ -122,7 +154,11 @@ class AddStaffModal extends Component {
         >
           {this.props.buttonLabel}
         </Button>
-        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+        <Modal
+          isOpen={this.state.isModalOpen}
+          toggle={this.toggleModal}
+          onHide={this.handleReset}
+        >
           <ModalHeader toggle={this.toggleModal}>THÊM NHÂN VIÊN</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleAdd}>
@@ -266,9 +302,14 @@ class AddStaffModal extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
-                <Col md={{ size: 10, offset: 2 }}>
+                <Col md={6}>
                   <Button type="submit" color="info" className="text-white">
                     Send Feedback
+                  </Button>
+                </Col>
+                <Col md={6}>
+                  <Button type="reset" color="info" className="text-white">
+                    reset
                   </Button>
                 </Col>
               </FormGroup>
