@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Jumbotron,
   Container,
@@ -15,8 +15,15 @@ import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
   const { staffs, handleSearch, resultSearch } = props;
+  // const [data, setData] = useState();
   const inputRef = useRef(null);
+  const data = [];
 
+  if (typeof Storage !== "undefined") {
+    data.push(JSON.parse(localStorage.getItem("staffsList")));
+  }
+
+  const id = data[0].length;
   window.onclick = () => {
     handleSearch("");
   };
@@ -54,7 +61,7 @@ export default function Home(props) {
           <h1>Danh sách nhân viên</h1>
           <div className="row">
             <div className="col-12 col-md-4">
-              <AddStaffModal buttonLabel={"THÊM NHÂN VIÊN"} />
+              <AddStaffModal buttonLabel={"THÊM NHÂN VIÊN"} id={id} />
             </div>
             <div className="col-12 col-md-8 col-lg-5">
               <Form onSubmit={handleOnSubmit}>

@@ -59,12 +59,26 @@ class AddStaffModal extends Component {
     });
   }
   handleAdd(event) {
-    this.setState({ isFlag: true });
+    this.setState({
+      isFlag: true
+    });
 
-    console.log(this.state);
-
+    const newStaff = {
+      id: this.props.id,
+      name: this.state.name,
+      doB: this.state.doB,
+      salaryScale: this.state.name,
+      startDate: this.state.startDate,
+      department: this.state.department,
+      annualLeave: this.state.annualLeave,
+      overTime: this.state.overTime,
+      salary: this.state.salaryScale,
+      image: "/assets/images/alberto.png"
+    };
+    console.log(newStaff);
     event.preventDefault();
   }
+
   handleBlur = (field) => (evt) => {
     this.setState({
       touched: {
@@ -76,7 +90,12 @@ class AddStaffModal extends Component {
   };
 
   handleReset() {
-    console.log(1);
+    this.setState({
+      name: "",
+      touched: {
+        name: false
+      }
+    });
   }
 
   validate(
@@ -154,11 +173,7 @@ class AddStaffModal extends Component {
         >
           {this.props.buttonLabel}
         </Button>
-        <Modal
-          isOpen={this.state.isModalOpen}
-          toggle={this.toggleModal}
-          onHide={this.handleReset}
-        >
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>THÊM NHÂN VIÊN</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleAdd}>
@@ -308,7 +323,12 @@ class AddStaffModal extends Component {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button type="reset" color="info" className="text-white">
+                  <Button
+                    type="reset"
+                    color="info"
+                    className="text-white"
+                    onClick={this.handleReset}
+                  >
                     reset
                   </Button>
                 </Col>

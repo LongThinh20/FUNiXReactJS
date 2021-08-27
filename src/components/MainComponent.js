@@ -11,6 +11,12 @@ import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 const Main = () => {
   const [resultSearch, setResultSearch] = useState([]);
 
+  if (typeof Storage !== "undefined") {
+    localStorage.setItem("staffsList", JSON.stringify(STAFFS));
+  } else {
+    alert("Trình duyệt không hổ trợ");
+  }
+
   const handleSearch = (value) => {
     if (value) {
       setResultSearch(
