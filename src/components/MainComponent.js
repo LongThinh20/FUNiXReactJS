@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
@@ -10,17 +10,40 @@ import { STAFFS, DEPARTMENTS } from "../shared/staffs";
 
 const Main = () => {
   const [resultSearch, setResultSearch] = useState([]);
+  const [staffsListFromState, setStaffsListFromState] = useState([]);
+  const [departmentFormState, setDepartmentFormSate] = useState([]);
 
-  if (typeof Storage !== "undefined") {
-    localStorage.setItem("staffsList", JSON.stringify(STAFFS));
-  } else {
-    alert("Trình duyệt không hổ trợ");
-  }
+  // get data form localStorage
+  useEffect(() => {
+    if (typeof Storage !== "undefined") {
+      localStorage.setItem("STAFFSLIST", JSON.stringify(STAFFS));
+      localStorage.setItem("DEPARTMENTSLIST", JSON.stringify(DEPARTMENTS));
+      setStaffsListFromState(JSON.parse(localStorage.getItem("STAFFSLIST")));
+      setDepartmentFormSate(
+        JSON.parse(localStorage.getItem("DEPARTMENTSLIST"))
+      );
+    } else {
+      alert("Trình duyệt không hổ trợ");
+    }
+  }, []);
+
+  //end get data form localStorage
+
+  const handleAddStaff = (newStaff) => {
+    const newArr = [...staffsListFromState];
+    newArr.push(newStaff);
+
+    setStaffsListFromState(newArr);
+    console.log(staffsListFromState);
+  };
+
+  console.log(staffsListFromState);
+  console.log("render main");
 
   const handleSearch = (value) => {
     if (value) {
       setResultSearch(
-        STAFFS.filter((staff) =>
+        staffsListFromState.filter((staff) =>
           staff.name.toUpperCase().includes(value.toUpperCase())
         )
       );
@@ -32,7 +55,7 @@ const Main = () => {
   const StaffWithId = ({ match }) => {
     return (
       <StaffDetail
-        staff={STAFFS.filter(
+        staff={staffsListFromState.filter(
           (staff) => staff.id === parseInt(match.params.staffId, 10)
         )}
       />
@@ -48,18 +71,22 @@ const Main = () => {
           path="/home"
           render={() => (
             <Home
-              staffs={STAFFS}
+              staffs={staffsListFromState}
               handleSearch={handleSearch}
               resultSearch={resultSearch}
+              handleAddStaff={handleAddStaff}
             />
           )}
         />
         <Route path="/home/:staffId" component={StaffWithId} />
         <Route
           path="/department"
-          render={() => <Department departments={DEPARTMENTS} />}
+          render={() => <Department departments={departmentFormState} />}
         />
-        <Route path="/salary" render={() => <Salary staffs={STAFFS} />} />
+        <Route
+          path="/salary"
+          render={() => <Salary staffs={staffsListFromState} />}
+        />
         <Redirect to="/home" />
       </Switch>
       <Footer />

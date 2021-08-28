@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Jumbotron,
   Container,
@@ -14,16 +14,9 @@ import StaffList from "./StaffListComponent";
 import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
-  const { staffs, handleSearch, resultSearch } = props;
-  // const [data, setData] = useState();
+  const { staffs, handleSearch, resultSearch, handleAddStaff } = props;
+
   const inputRef = useRef(null);
-  const data = [];
-
-  if (typeof Storage !== "undefined") {
-    data.push(JSON.parse(localStorage.getItem("staffsList")));
-  }
-
-  const id = data[0].length;
   window.onclick = () => {
     handleSearch("");
   };
@@ -61,7 +54,12 @@ export default function Home(props) {
           <h1>Danh sách nhân viên</h1>
           <div className="row">
             <div className="col-12 col-md-4">
-              <AddStaffModal buttonLabel={"THÊM NHÂN VIÊN"} id={id} />
+              <AddStaffModal
+                buttonLabel={"THÊM NHÂN VIÊN"}
+                id={staffs.length}
+                staffs={staffs}
+                handleAddStaff={handleAddStaff}
+              />
             </div>
             <div className="col-12 col-md-8 col-lg-5">
               <Form onSubmit={handleOnSubmit}>
@@ -92,7 +90,6 @@ export default function Home(props) {
           )}
         </Container>
       </div>
-      <AddStaffModal />
     </section>
   );
 }

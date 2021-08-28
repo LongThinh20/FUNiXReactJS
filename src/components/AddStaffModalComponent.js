@@ -58,6 +58,7 @@ class AddStaffModal extends Component {
       [name]: value
     });
   }
+  //handle add new staff
   handleAdd(event) {
     this.setState({
       isFlag: true
@@ -67,7 +68,7 @@ class AddStaffModal extends Component {
       id: this.props.id,
       name: this.state.name,
       doB: this.state.doB,
-      salaryScale: this.state.name,
+      salaryScale: this.state.salaryScale,
       startDate: this.state.startDate,
       department: this.state.department,
       annualLeave: this.state.annualLeave,
@@ -76,6 +77,11 @@ class AddStaffModal extends Component {
       image: "/assets/images/alberto.png"
     };
     console.log(newStaff);
+
+    if (!Object.values(newStaff).includes("")) {
+      this.props.handleAddStaff(newStaff);
+    }
+
     event.preventDefault();
   }
 
@@ -98,15 +104,7 @@ class AddStaffModal extends Component {
     });
   }
 
-  validate(
-    name,
-    doB,
-    salaryScale,
-    startDate,
-    department,
-    annualLeave,
-    overTime
-  ) {
+  validate(name, doB, salaryScale, startDate, annualLeave, overTime) {
     const errors = {
       name: "",
       doB: "",
@@ -306,7 +304,6 @@ class AddStaffModal extends Component {
                     name="overTime"
                     id="overTime"
                     defaultValue="0"
-                    value={this.state.overTime}
                     value={this.state.overTime}
                     valid={errors.overTime === ""}
                     invalid={errors.overTime !== ""}

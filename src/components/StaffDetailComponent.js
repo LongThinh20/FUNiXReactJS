@@ -13,6 +13,8 @@ export default function StaffDetail(props) {
   const { name, doB, startDate, annualLeave, overTime, department, image } =
     props.staff[0];
 
+  console.log(props.staff[0]);
+
   return (
     <section id="staff">
       <Container>
