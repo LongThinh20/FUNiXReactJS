@@ -20,11 +20,12 @@ class AddStaffModal extends Component {
       isModalOpen: false,
       name: "",
       doB: "",
-      salaryScale: 1,
       startDate: "",
-      department: 0,
+      department: "",
+      salaryScale: 1,
       annualLeave: 0,
       overTime: 0,
+
       image: "/assets/images/alberto.png",
       touched: {
         name: false,
@@ -72,7 +73,6 @@ class AddStaffModal extends Component {
       department: this.state.department,
       annualLeave: this.state.annualLeave,
       overTime: this.state.overTime,
-      salary: this.state.salaryScale,
       image: "/assets/images/alberto.png"
     };
     console.log(newStaff);
@@ -84,7 +84,7 @@ class AddStaffModal extends Component {
         doB: "",
         salaryScale: 1,
         startDate: "",
-        department: 0,
+        department: "",
         annualLeave: 0,
         overTime: 0,
         touched: {
@@ -113,7 +113,15 @@ class AddStaffModal extends Component {
     });
   };
 
-  validate(name, doB, salaryScale, startDate, annualLeave, overTime) {
+  validate(
+    name,
+    doB,
+    startDate,
+    department,
+    salaryScale,
+    annualLeave,
+    overTime
+  ) {
     const errors = {
       name: "",
       doB: "",
@@ -133,8 +141,14 @@ class AddStaffModal extends Component {
     if (this.state.isFlag && startDate === "") {
       errors.startDate = "Chưa nhập dữ liệu";
     }
-    if (this.state.isFlag && name === "") {
-      errors.name = "Họ tên không được rỗng";
+    if (this.state.isFlag && department === "") {
+      errors.department = "Chọn tên phòng ban";
+    }
+    if (this.state.isFlag && overTime === "") {
+      errors.overTime = "Họ tên không được rỗng";
+    }
+    if (this.state.isFlag && annualLeave === "") {
+      errors.annualLeave = "Số ngày nghỉ không được rỗng";
     }
     if (this.state.touched.name && name.length < 3) {
       errors.name = "Họ tên chưa hợp lệ";
@@ -143,21 +157,34 @@ class AddStaffModal extends Component {
     if (this.state.touched.doB && doB === "") {
       errors.doB = "Ngày sinh chưa hợp lệ";
     }
-    if (this.state.touched.salaryScale && salaryScale < 1) {
-      errors.salaryScale = "Hệ số lương chưa hợp lệ";
-    }
     if (this.state.touched.startDate && startDate === "") {
       errors.startDate = "Ngày chưa  hợp lệ";
     }
     if (
+      this.state.touched.department &&
+      (department === "0" || department === "")
+    ) {
+      errors.department = "Chưa chọn phòng ban";
+    }
+    if (
+      this.state.touched.salaryScale &&
+      (salaryScale === "" || salaryScale <= 0)
+    ) {
+      errors.salaryScale = "Hệ số lương chưa hợp lệ";
+    }
+
+    if (
       this.state.touched.annualLeave &&
       (annualLeave === "" || annualLeave < 0)
     ) {
-      errors.annualLeave = "Giá trị chưa hợp lệ";
+      errors.annualLeave = "Số ngày nghỉ chưa hợp lệ";
     }
-    if (this.state.touched.overTime && (overTime === "" || overTime < 0)) {
-      errors.overTime = "Giờ  chưa hợp lệ";
+    if (this.state.touched.overTime && overTime === "") {
+      errors.overTime = "Giờ chưa nhập";
+    } else if (this.state.touched.overTime && overTime < 0) {
+      errors.overTime = "Giờ chưa hợp lệ";
     }
+
     return errors;
   }
 
@@ -165,9 +192,9 @@ class AddStaffModal extends Component {
     const errors = this.validate(
       this.state.name,
       this.state.doB,
-      this.state.salaryScale,
       this.state.startDate,
       this.state.department,
+      this.state.salaryScale,
       this.state.annualLeave,
       this.state.overTime
     );
@@ -255,6 +282,7 @@ class AddStaffModal extends Component {
                     onChange={this.handleInputChange}
                     onBlur={this.handleBlur("department")}
                   >
+                    <option value="0">--Chọn tên phòng ban--</option>
                     <option value="1">Sale</option>
                     <option value="2">HR</option>
                     <option value="3">Marketing</option>
@@ -270,7 +298,7 @@ class AddStaffModal extends Component {
                 </Label>
                 <Col md={8}>
                   <Input
-                    type="text"
+                    type="number"
                     name="salaryScale"
                     id="salaryScale"
                     placeholder="1-->3"
@@ -290,10 +318,9 @@ class AddStaffModal extends Component {
                 </Label>
                 <Col md={8}>
                   <Input
-                    type="text"
+                    type="number"
                     name="annualLeave"
                     id="annualLeave"
-                    defaultValue="0"
                     value={this.state.annualLeave}
                     valid={errors.annualLeave === ""}
                     invalid={errors.annualLeave !== ""}
@@ -309,7 +336,7 @@ class AddStaffModal extends Component {
                 </Label>
                 <Col md={8}>
                   <Input
-                    type="text"
+                    type="number"
                     name="overTime"
                     id="overTime"
                     defaultValue="0"

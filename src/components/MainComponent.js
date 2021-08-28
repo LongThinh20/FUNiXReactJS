@@ -38,7 +38,6 @@ const Main = () => {
   };
 
   console.log(staffsListFromState);
-  console.log("render main");
 
   const handleSearch = (value) => {
     if (value) {
