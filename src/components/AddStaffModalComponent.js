@@ -41,7 +41,6 @@ class AddStaffModal extends Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.handleReset = this.handleReset.bind(this);
   }
 
   toggleModal() {
@@ -80,6 +79,25 @@ class AddStaffModal extends Component {
 
     if (!Object.values(newStaff).includes("")) {
       this.props.handleAddStaff(newStaff);
+      this.setState({
+        name: "",
+        doB: "",
+        salaryScale: 1,
+        startDate: "",
+        department: 0,
+        annualLeave: 0,
+        overTime: 0,
+        touched: {
+          name: false,
+          doB: false,
+          salaryScale: false,
+          startDate: false,
+          department: false,
+          annualLeave: false,
+          overTime: false
+        },
+        isFlag: false
+      });
     }
 
     event.preventDefault();
@@ -94,15 +112,6 @@ class AddStaffModal extends Component {
       isFlag: false
     });
   };
-
-  handleReset() {
-    this.setState({
-      name: "",
-      touched: {
-        name: false
-      }
-    });
-  }
 
   validate(name, doB, salaryScale, startDate, annualLeave, overTime) {
     const errors = {
@@ -246,11 +255,11 @@ class AddStaffModal extends Component {
                     onChange={this.handleInputChange}
                     onBlur={this.handleBlur("department")}
                   >
-                    <option value="0">Sale</option>
-                    <option value="1">HR</option>
-                    <option value="2">Marketing</option>
-                    <option value="3">IT</option>
-                    <option value="4">Finance</option>
+                    <option value="1">Sale</option>
+                    <option value="2">HR</option>
+                    <option value="3">Marketing</option>
+                    <option value="4">IT</option>
+                    <option value="5">Finance</option>
                   </Input>
                   <FormFeedback>{errors.department}</FormFeedback>
                 </Col>
@@ -320,12 +329,7 @@ class AddStaffModal extends Component {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button
-                    type="reset"
-                    color="info"
-                    className="text-white"
-                    onClick={this.handleReset}
-                  >
+                  <Button type="reset" color="info" className="text-white">
                     reset
                   </Button>
                 </Col>
