@@ -64,6 +64,22 @@ class AddStaffModal extends Component {
       isFlag: true
     });
 
+    // const newDepartment = {
+    //   id: "",
+    //   name: "",
+    //   numberOfStaff: ""
+    // };
+
+    // this.props.departments.map((item) => {
+    //   if (item.id.slice(-1) === this.state.department) {
+    //     return (
+    //       (newDepartment.id = item.id),
+    //       (newDepartment.name = item.name),
+    //       (newDepartment.numberOfStaff = item.numberOfStaff + 1)
+    //     );
+    //   }
+    // });
+
     const newStaff = {
       id: this.props.id,
       name: this.state.name,
@@ -75,7 +91,6 @@ class AddStaffModal extends Component {
       overTime: this.state.overTime,
       image: "/assets/images/alberto.png"
     };
-    console.log(newStaff);
 
     if (!Object.values(newStaff).includes("")) {
       this.props.handleAddStaff(newStaff);

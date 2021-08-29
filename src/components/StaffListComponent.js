@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function StaffList(props) {
   const { staffs } = props;
+
   return (
     <section>
       <div className="row">
@@ -15,7 +16,6 @@ export default function StaffList(props) {
                   <CardImg src={staff.image} alt={staff.name} />
                   <CardBody>
                     <CardTitle>{staff.name}</CardTitle>
-                    <CardText>{staff.description}</CardText>
                   </CardBody>
                 </Card>
               </Link>

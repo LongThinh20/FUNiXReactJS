@@ -30,14 +30,19 @@ const Main = () => {
   //end get data form localStorage
 
   const handleAddStaff = (newStaff) => {
+    departmentFormState.forEach((item, index) => {
+      if (item.id.slice(-1) === newStaff.department) {
+        newStaff.department = DEPARTMENTS[`${index}`];
+        item.numberOfStaff = item.numberOfStaff + 1;
+      }
+    });
+
     const newArr = [...staffsListFromState];
+
     newArr.push(newStaff);
 
     setStaffsListFromState(newArr);
-    console.log(staffsListFromState);
   };
-
-  console.log(staffsListFromState);
 
   const handleSearch = (value) => {
     if (value) {
@@ -74,6 +79,7 @@ const Main = () => {
               handleSearch={handleSearch}
               resultSearch={resultSearch}
               handleAddStaff={handleAddStaff}
+              departments={departmentFormState}
             />
           )}
         />
