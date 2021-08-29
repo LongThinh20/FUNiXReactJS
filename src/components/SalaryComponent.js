@@ -6,40 +6,47 @@ import SalaryList from "./SalaryListComponent";
 export default function Salary(props) {
   const staffs = props.staffs;
   const [staffsLst, setStaffLst] = useState([...staffs]);
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const salaryBasic = 3000000;
 
-  const handleSortByIdIncrease = () => {
-    setStaffLst(staffsLst.sort((a, b) => b.id - a.id));
-  };
-  const handleSortByIdDecrease = () => {
-    setStaffLst(staffsLst.sort((a, b) => a.id - b.id));
-  };
-  const handleSortBySalaryIncrease = () => {
-    setStaffLst(
-      staffsLst.sort((a, b) => {
-        if (
-          a.salaryScale * salaryBasic + 200000 * a.overTime >
-          b.salaryScale * salaryBasic + 200000 * b.overTime
-        ) {
-          return -1;
-        }
-        return 0;
-      })
-    );
-  };
-  const handleSortBySalaryDecrease = () => {
-    setStaffLst(
-      staffsLst.sort((a, b) => {
-        if (
-          a.salaryScale * salaryBasic + 200000 * a.overTime <
-          b.salaryScale * salaryBasic + 200000 * b.overTime
-        ) {
-          return -1;
-        }
-        return 0;
-      })
-    );
+  const handleSort = (index) => {
+    if (index === 1) {
+      setActiveIndex(1);
+      return setStaffLst(staffsLst.sort((a, b) => b.id - a.id));
+    }
+    if (index === 2) {
+      setActiveIndex(2);
+      return setStaffLst(staffsLst.sort((a, b) => a.id - b.id));
+    }
+    if (index === 3) {
+      setActiveIndex(3);
+      return setStaffLst(
+        staffsLst.sort((a, b) => {
+          if (
+            a.salaryScale * salaryBasic + 200000 * a.overTime >
+            b.salaryScale * salaryBasic + 200000 * b.overTime
+          ) {
+            return -1;
+          }
+          return 0;
+        })
+      );
+    }
+    if (index === 4) {
+      setActiveIndex(4);
+      setStaffLst(
+        staffsLst.sort((a, b) => {
+          if (
+            a.salaryScale * salaryBasic + 200000 * a.overTime <
+            b.salaryScale * salaryBasic + 200000 * b.overTime
+          ) {
+            return -1;
+          }
+          return 0;
+        })
+      );
+    }
   };
 
   return (
@@ -60,33 +67,33 @@ export default function Salary(props) {
             <span className="text_gray font-weight-bold">Sắp xếp theo </span>
             <Button
               outline
-              className="m-1 "
+              className={activeIndex === 1 ? "active m-1" : "m-1"}
               color="info"
-              onClick={() => handleSortByIdIncrease()}
+              onClick={() => handleSort(1)}
             >
               Mã nhân viên giảm dần
             </Button>
             <Button
               outline
-              className="m-1"
+              className={activeIndex === 2 ? "active m-1" : "m-1"}
               color="info"
-              onClick={() => handleSortByIdDecrease()}
+              onClick={() => handleSort(2)}
             >
               Mã nhân viên tăng dần
             </Button>
             <Button
               outline
-              className="m-1"
+              className={activeIndex === 3 ? "active m-1" : "m-1"}
               color="info"
-              onClick={() => handleSortBySalaryIncrease()}
+              onClick={() => handleSort(3)}
             >
               Lương giảm dần
             </Button>
             <Button
               outline
-              className="m-1"
+              className={activeIndex === 4 ? "active m-1" : "m-1"}
               color="info"
-              onClick={() => handleSortBySalaryDecrease()}
+              onClick={() => handleSort(4)}
             >
               Lương tăng dần
             </Button>

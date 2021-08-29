@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Swal from "sweetalert2";
 import {
   Button,
   Modal,
@@ -46,7 +47,24 @@ class AddStaffModal extends Component {
 
   toggleModal() {
     this.setState({
-      isModalOpen: !this.state.isModalOpen
+      isModalOpen: !this.state.isModalOpen,
+      name: "",
+      doB: "",
+      salaryScale: 1,
+      startDate: "",
+      department: "",
+      annualLeave: 0,
+      overTime: 0,
+      touched: {
+        name: false,
+        doB: false,
+        salaryScale: false,
+        startDate: false,
+        department: false,
+        annualLeave: false,
+        overTime: false
+      },
+      isFlag: false
     });
   }
   handleInputChange(event) {
@@ -63,23 +81,6 @@ class AddStaffModal extends Component {
     this.setState({
       isFlag: true
     });
-
-    // const newDepartment = {
-    //   id: "",
-    //   name: "",
-    //   numberOfStaff: ""
-    // };
-
-    // this.props.departments.map((item) => {
-    //   if (item.id.slice(-1) === this.state.department) {
-    //     return (
-    //       (newDepartment.id = item.id),
-    //       (newDepartment.name = item.name),
-    //       (newDepartment.numberOfStaff = item.numberOfStaff + 1)
-    //     );
-    //   }
-    // });
-
     const newStaff = {
       id: this.props.id,
       name: this.state.name,
@@ -112,6 +113,13 @@ class AddStaffModal extends Component {
           overTime: false
         },
         isFlag: false
+      });
+      Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: "Thêm nhân viên thành công!",
+        showConfirmButton: false,
+        timer: 1500
       });
     }
 
@@ -151,29 +159,30 @@ class AddStaffModal extends Component {
       errors.name = "Chưa nhập dữ liệu";
     }
     if (this.state.isFlag && doB === "") {
-      errors.doB = "Chưa nhập dữ liệu";
+      errors.doB = "Chưa nhập ngày sinh";
     }
     if (this.state.isFlag && startDate === "") {
-      errors.startDate = "Chưa nhập dữ liệu";
+      errors.startDate = "Chưa nhập ngày bắt đầu làm";
     }
     if (this.state.isFlag && department === "") {
-      errors.department = "Chọn tên phòng ban";
+      errors.department = "Chưa chọn tên phòng ban";
     }
     if (this.state.isFlag && overTime === "") {
-      errors.overTime = "Họ tên không được rỗng";
+      errors.overTime = "Chưa nhập số giờ làm thêm";
     }
     if (this.state.isFlag && annualLeave === "") {
-      errors.annualLeave = "Số ngày nghỉ không được rỗng";
+      errors.annualLeave = "Chưa nhập số ngày nghỉ còn lại.";
     }
+    //
     if (this.state.touched.name && name.length < 3) {
-      errors.name = "Họ tên chưa hợp lệ";
+      errors.name = "Chưa nhập họ tên.";
     }
 
     if (this.state.touched.doB && doB === "") {
-      errors.doB = "Ngày sinh chưa hợp lệ";
+      errors.doB = "Chưa nhập ngày sinh.";
     }
     if (this.state.touched.startDate && startDate === "") {
-      errors.startDate = "Ngày chưa  hợp lệ";
+      errors.startDate = "Chưa nhập ngày bắt đầu làm.";
     }
     if (
       this.state.touched.department &&
@@ -181,23 +190,20 @@ class AddStaffModal extends Component {
     ) {
       errors.department = "Chưa chọn phòng ban";
     }
-    if (
-      this.state.touched.salaryScale &&
-      (salaryScale === "" || salaryScale <= 0)
-    ) {
+    if (this.state.touched.salaryScale && salaryScale === "") {
+      errors.salaryScale = "Chưa nhập hệ số lương";
+    } else if (salaryScale <= 0) {
       errors.salaryScale = "Hệ số lương chưa hợp lệ";
     }
-
-    if (
-      this.state.touched.annualLeave &&
-      (annualLeave === "" || annualLeave < 0)
-    ) {
+    if (this.state.touched.annualLeave && annualLeave === "") {
+      errors.annualLeave = "Chưa nhập ngày nghỉ";
+    } else if (annualLeave < 0) {
       errors.annualLeave = "Số ngày nghỉ chưa hợp lệ";
     }
     if (this.state.touched.overTime && overTime === "") {
-      errors.overTime = "Giờ chưa nhập";
+      errors.overTime = "Chưa nhập số giờ làm thêm";
     } else if (this.state.touched.overTime && overTime < 0) {
-      errors.overTime = "Giờ chưa hợp lệ";
+      errors.overTime = "Số giờ làm thêm  chưa hợp lệ";
     }
 
     return errors;
@@ -365,27 +371,16 @@ class AddStaffModal extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
-                <Col md={6}>
+                <Col md={8}></Col>
+                <Col md={4}>
                   <Button type="submit" color="info" className="text-white">
-                    Send Feedback
-                  </Button>
-                </Col>
-                <Col md={6}>
-                  <Button type="reset" color="info" className="text-white">
-                    reset
+                    Thêm nhân viên
                   </Button>
                 </Col>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button
-              color="info"
-              className="text-white"
-              onClick={this.toggleModal}
-            >
-              Thêm nhân viên
-            </Button>
             <Button color="secondary" onClick={this.toggleModal}>
               Hủy
             </Button>

@@ -14,8 +14,7 @@ import StaffList from "./StaffListComponent";
 import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
-  const { staffs, handleSearch, resultSearch, handleAddStaff, departments } =
-    props;
+  const { staffs, handleSearch, resultSearch, handleAddStaff } = props;
 
   const inputRef = useRef(null);
   window.onclick = () => {
@@ -60,7 +59,6 @@ export default function Home(props) {
                 id={staffs.length}
                 staffs={staffs}
                 handleAddStaff={handleAddStaff}
-                departments={departments}
               />
             </div>
             <div className="col-12 col-md-8 col-lg-5">

@@ -25,12 +25,11 @@ ul {
   color: var(--blue2);
 }
 .modal-header .close {
-  display:none;
+  display: none;
 }
 .modal-dialog {
   width: 800px;
 }
-
 
 .nav {
   background-image: linear-gradient(
@@ -145,6 +144,9 @@ ul {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom right;
+}
+#salary .active {
+  color: white;
 }
 #salary button:hover {
   color: white;

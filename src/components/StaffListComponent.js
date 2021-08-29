@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export default function StaffList(props) {
