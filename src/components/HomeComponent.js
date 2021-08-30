@@ -15,9 +15,6 @@ import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
   const { staffs, handleSearch, resultSearch, handleAddStaff } = props;
-
-  console.log(staffs);
-
   const inputRef = useRef(null);
   window.onclick = () => {
     handleSearch("");

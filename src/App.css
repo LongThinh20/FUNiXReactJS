@@ -71,7 +71,10 @@ ul {
   color: gray;
   font-style: italic;
 }
-
+.col-form-label {
+  color: #4a4e65;
+  font-style: italic;
+}
 #content {
   min-height: 650px;
   padding: 30px 0;

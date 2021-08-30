@@ -10,6 +10,7 @@ import {
   Label
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
+import Swal from "sweetalert2";
 
 const AddStaffModal = (props) => {
   const { buttonLabel, handleAddStaff } = props;
@@ -21,11 +22,19 @@ const AddStaffModal = (props) => {
   //validate
   const required = (val) => val && val.length;
   const minLength = (len) => (val) => !val || val.length >= len;
-  const isVali = (len) => (val) => val && val > len;
+  const isVali = (len) => (val) => !val || val > len;
   //validate
 
   const handleSubmit = (values) => {
     handleAddStaff(values);
+    Swal.fire({
+      position: "center-center",
+      icon: "success",
+      title: "Thêm nhân viên thành công !",
+      showConfirmButton: false,
+      timer: 1500
+    });
+    toggle();
   };
 
   return (
@@ -125,7 +134,8 @@ const AddStaffModal = (props) => {
                   name="department"
                   className="form-control m-1"
                   validators={{
-                    required
+                    required,
+                    isVali: isVali(0)
                   }}
                 >
                   <option value="0">--Chọn tên phòng ban--</option>
@@ -140,7 +150,8 @@ const AddStaffModal = (props) => {
                   model=".department"
                   show="touched"
                   messages={{
-                    required: "Chọn tên phòng ban ..."
+                    required: "Chọn tên phòng ban ...",
+                    isVali: "Chọn tên phòng ban..."
                   }}
                 />
               </Col>
@@ -227,17 +238,20 @@ const AddStaffModal = (props) => {
               </Col>
             </Row>
             <Row className="form-group">
-              <Col md={{ size: 10, offset: 2 }}>
-                <Button type="submit" color="info" className="text-white">
-                  THÊM NHÂN VIÊN
-                </Button>
-              </Col>
+              <Button
+                type="submit"
+                color="info"
+                className="text-white mt-2"
+                style={{ width: "80%", margin: "0 auto" }}
+              >
+                THÊM NHÂN VIÊN
+              </Button>
             </Row>
           </LocalForm>
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
-            Cancel
+            Hủy
           </Button>
         </ModalFooter>
       </Modal>

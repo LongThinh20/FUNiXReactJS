@@ -20,23 +20,13 @@ const Main = () => {
   const dispatchAddStaff = (newStaff) => dispatch(addStaff(newStaff));
 
   const handleAddStaff = (newStaff) => {
-    const newSTAAA = {
+    const newStaff2 = {
       ...newStaff,
       id: STAFFS.length,
       image: "/assets/images/alberto.png"
     };
 
-    dispatchAddStaff(newSTAAA);
-
-    // departmentFormState.forEach((item, index) => {
-    //   if (item.id.slice(-1) === newStaff.department) {
-    //     newStaff.department = DEPARTMENTS[`${index}`];
-    //     item.numberOfStaff = item.numberOfStaff + 1;
-    //   }
-    // });
-    // const newArr = [...staffsListFromState];
-    // newArr.push(newStaff);
-    // setStaffsListFromState(newArr);
+    dispatchAddStaff(newStaff2);
   };
 
   const handleSearch = (value) => {
