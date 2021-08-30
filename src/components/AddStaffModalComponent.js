@@ -371,12 +371,14 @@ class AddStaffModal extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row className="mt-2">
-                <Col md={8}></Col>
-                <Col md={4}>
-                  <Button type="submit" color="info" className="text-white">
-                    Thêm nhân viên
-                  </Button>
-                </Col>
+                <Button
+                  type="submit"
+                  color="info"
+                  className="text-white mt-2"
+                  style={{ width: "80%", margin: "0 auto" }}
+                >
+                  Thêm nhân viên
+                </Button>
               </FormGroup>
             </Form>
           </ModalBody>

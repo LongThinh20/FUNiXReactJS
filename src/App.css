@@ -30,7 +30,10 @@ ul {
 .modal-dialog {
   width: 800px;
 }
-
+.col-form-label {
+  color: #4a4e65;
+  font-style: italic;
+}
 .nav {
   background-image: linear-gradient(
     to right,
