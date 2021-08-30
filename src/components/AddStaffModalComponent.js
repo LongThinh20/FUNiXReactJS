@@ -26,8 +26,6 @@ const AddStaffModal = (props) => {
 
   const handleSubmit = (values) => {
     handleAddStaff(values);
-
-    console.log(values);
   };
 
   return (

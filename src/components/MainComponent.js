@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
@@ -6,52 +6,43 @@ import Home from "./HomeComponent";
 import Salary from "./SalaryComponent";
 import Department from "./DepartmentComponent";
 import StaffDetail from "./StaffDetailComponent";
-import { STAFFS, DEPARTMENTS } from "../shared/staffs";
-import { useSelector } from "react-redux";
+import { addStaff } from "../Redux/action";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const Main = () => {
-  const state = useSelector((state) => state.staffs);
+  const STAFFS = useSelector((state) => state.staffs);
+  const DEPARTMENTS = useSelector((state) => state.departments);
+  const dispatch = useDispatch();
 
   const [resultSearch, setResultSearch] = useState([]);
-  const [staffsListFromState, setStaffsListFromState] = useState([]);
-  const [departmentFormState, setDepartmentFormSate] = useState([]);
 
-  // get data form localStorage
-  useEffect(() => {
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("STAFFSLIST", JSON.stringify(STAFFS));
-      localStorage.setItem("DEPARTMENTSLIST", JSON.stringify(DEPARTMENTS));
-      setStaffsListFromState(JSON.parse(localStorage.getItem("STAFFSLIST")));
-      setDepartmentFormSate(
-        JSON.parse(localStorage.getItem("DEPARTMENTSLIST"))
-      );
-    } else {
-      alert("Trình duyệt không hổ trợ");
-    }
-  }, []);
-
-  //end get data form localStorage
+  const dispatchAddStaff = (newStaff) => dispatch(addStaff(newStaff));
 
   const handleAddStaff = (newStaff) => {
-    console.log(newStaff.doB);
-    departmentFormState.forEach((item, index) => {
-      if (item.id.slice(-1) === newStaff.department) {
-        newStaff.department = DEPARTMENTS[`${index}`];
-        item.numberOfStaff = item.numberOfStaff + 1;
-      }
-    });
+    const newSTAAA = {
+      ...newStaff,
+      id: STAFFS.length,
+      image: "/assets/images/alberto.png"
+    };
 
-    const newArr = [...staffsListFromState];
+    dispatchAddStaff(newSTAAA);
 
-    newArr.push(newStaff);
-
-    setStaffsListFromState(newArr);
+    // departmentFormState.forEach((item, index) => {
+    //   if (item.id.slice(-1) === newStaff.department) {
+    //     newStaff.department = DEPARTMENTS[`${index}`];
+    //     item.numberOfStaff = item.numberOfStaff + 1;
+    //   }
+    // });
+    // const newArr = [...staffsListFromState];
+    // newArr.push(newStaff);
+    // setStaffsListFromState(newArr);
   };
 
   const handleSearch = (value) => {
     if (value) {
       setResultSearch(
-        staffsListFromState.filter((staff) =>
+        STAFFS.filter((staff) =>
           staff.name.toUpperCase().includes(value.toUpperCase())
         )
       );
@@ -63,7 +54,7 @@ const Main = () => {
   const StaffWithId = ({ match }) => {
     return (
       <StaffDetail
-        staff={staffsListFromState.filter(
+        staff={STAFFS.filter(
           (staff) => staff.id === parseInt(match.params.staffId, 10)
         )}
       />
@@ -79,23 +70,20 @@ const Main = () => {
           path="/home"
           render={() => (
             <Home
-              staffs={staffsListFromState}
+              staffs={STAFFS}
               handleSearch={handleSearch}
               resultSearch={resultSearch}
               handleAddStaff={handleAddStaff}
-              departments={departmentFormState}
+              departments={DEPARTMENTS}
             />
           )}
         />
         <Route path="/home/:staffId" component={StaffWithId} />
         <Route
           path="/department"
-          render={() => <Department departments={departmentFormState} />}
+          render={() => <Department departments={DEPARTMENTS} />}
         />
-        <Route
-          path="/salary"
-          render={() => <Salary staffs={staffsListFromState} />}
-        />
+        <Route path="/salary" render={() => <Salary staffs={STAFFS} />} />
         <Redirect to="/home" />
       </Switch>
       <Footer />
