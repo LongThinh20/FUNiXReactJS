@@ -7,10 +7,10 @@ import {
   CardBody
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import dateformat from "dateformat";
+import image from "../img/developer-team.png";
 
 export default function StaffDetail(props) {
-  const { name, doB, startDate, annualLeave, overTime, department, image } =
+  const { name, doB, startDate, annualLeave, overTime, department } =
     props.staff[0];
 
   console.log(startDate);

@@ -3,7 +3,7 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export default function SalaryList(props) {
-  const { staffs, salaryBasic } = props;
+  const { staffs } = props;
 
   return (
     <div className="row">
@@ -21,13 +21,7 @@ export default function SalaryList(props) {
                 <CardText>Hệ số lương: {staff.salaryScale}</CardText>
                 <CardText>Số giờ làm thêm: {staff.overTime}</CardText>
                 <CardText className="salary_text">
-                  Lương :{" "}
-                  {Math.round(
-                    staff.salaryScale * salaryBasic + 200000 * staff.overTime
-                  )
-                    .toLocaleString()
-                    .replace(/,/g, ",")}{" "}
-                  VNĐ
+                  Lương : {staff.salary.toLocaleString().replace(/,/g, ",")} VNĐ
                 </CardText>
               </CardBody>
             </Card>

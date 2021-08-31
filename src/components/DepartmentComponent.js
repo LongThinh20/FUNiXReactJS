@@ -27,14 +27,16 @@ export default function Department(props) {
           {departments.map((item, index) => {
             return (
               <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
-                <Card className="m-1">
-                  <CardBody>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardText>
-                      Số lượng nhân viên: {item.numberOfStaff}
-                    </CardText>
-                  </CardBody>
-                </Card>
+                <Link to="/department/:departmentId">
+                  <Card className="m-1">
+                    <CardBody>
+                      <CardTitle>{item.name}</CardTitle>
+                      <CardText>
+                        Số lượng nhân viên: {item.numberOfStaff}
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Link>
               </div>
             );
           })}

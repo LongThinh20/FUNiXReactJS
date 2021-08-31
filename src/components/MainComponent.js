@@ -6,14 +6,20 @@ import Home from "./HomeComponent";
 import Salary from "./SalaryComponent";
 import Department from "./DepartmentComponent";
 import StaffDetail from "./StaffDetailComponent";
-import { fetchStaffs } from "../Redux/ActionCreators";
+import {
+  fetchDepartments,
+  fetchStaffs,
+  fetchStaffsSalary
+} from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
 
 const Main = () => {
   //get state
   const STAFFS = useSelector((state) => state.staffs.staffs);
-  const DEPARTMENTS = useSelector((state) => state.departments);
+  const DEPARTMENTS = useSelector((state) => state.departments.departments);
+  const STAFFSSALARY = useSelector((state) => state.staffs.staffsSalary);
+
   //get state
   const dispatch = useDispatch();
 
@@ -21,6 +27,8 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchStaffs());
+    dispatch(fetchDepartments());
+    dispatch(fetchStaffsSalary());
   }, []);
 
   const handleAddStaff = (newStaff) => {};
@@ -69,7 +77,7 @@ const Main = () => {
           path="/department"
           render={() => <Department departments={DEPARTMENTS} />}
         />
-        <Route path="/salary" render={() => <Salary staffs={STAFFS} />} />
+        <Route path="/salary" render={() => <Salary staffs={STAFFSSALARY} />} />
         <Redirect to="/home" />
       </Switch>
       <Footer />
