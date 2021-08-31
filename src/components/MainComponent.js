@@ -9,10 +9,13 @@ import StaffDetail from "./StaffDetailComponent";
 import {
   fetchDepartments,
   fetchStaffs,
+  fetchStaffsByDepartment,
   fetchStaffsSalary
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
+import StaffsByDepartment from "./StaffsByDepartmentComponent";
+import StaffWithIdd from "./StaffWithId";
 
 const Main = () => {
   //get state
@@ -29,6 +32,7 @@ const Main = () => {
     dispatch(fetchStaffs());
     dispatch(fetchDepartments());
     dispatch(fetchStaffsSalary());
+    dispatch(fetchStaffsByDepartment("Dept02"));
   }, []);
 
   const handleAddStaff = (newStaff) => {};
@@ -55,6 +59,10 @@ const Main = () => {
     );
   };
 
+  const StaffWithIdd2 = ({ match }) => {
+    return <StaffWithIdd />;
+  };
+
   return (
     <>
       <Header />
@@ -72,11 +80,13 @@ const Main = () => {
             />
           )}
         />
+
         <Route path="/home/:staffId" component={StaffWithId} />
         <Route
           path="/department"
           render={() => <Department departments={DEPARTMENTS} />}
         />
+        <Route path="/department/:Id" component={StaffWithIdd2} />
         <Route path="/salary" render={() => <Salary staffs={STAFFSSALARY} />} />
         <Redirect to="/home" />
       </Switch>

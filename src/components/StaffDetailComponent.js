@@ -13,8 +13,6 @@ export default function StaffDetail(props) {
   const { name, doB, startDate, annualLeave, overTime, department } =
     props.staff[0];
 
-  console.log(startDate);
-
   return (
     <section id="staff">
       <Container>
@@ -41,7 +39,7 @@ export default function StaffDetail(props) {
                     <dt className="col-6">Ngày vào công ty: </dt>
                     <dd className="col-6">{startDate}</dd>
                     <dt className="col-6">Phòng ban: </dt>
-                    <dd className="col-6">{department.name}</dd>
+                    {/* <dd className="col-6">{department.name}</dd> */}
                     <dt className="col-6">Số ngày nghỉ còn lại: </dt>
                     <dd className="col-6">{annualLeave}</dd>
                     <dt className="col-6">Số ngày làm thêm: </dt>

@@ -2,10 +2,11 @@ import * as ActionTypes from "./actionType";
 
 export const Staffs = (
   state = {
-    isLoading: true,
-    errMess: null,
+    // isLoading: true,
+    // errMess: null,
     staffs: [],
-    staffsSalary: []
+    staffsSalary: [],
+    staffsByDepartment: []
   },
   action
 ) => {
@@ -15,6 +16,9 @@ export const Staffs = (
     }
     case ActionTypes.ADD_STAFFSSALARY: {
       return { ...state, staffsSalary: action.payload };
+    }
+    case ActionTypes.ADD_STAFFS_BY_DEPARTMENT: {
+      return { ...state, staffsByDepartment: action.payload };
     }
 
     default:

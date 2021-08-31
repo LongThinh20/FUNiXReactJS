@@ -25,10 +25,24 @@ export const fetchStaffsSalary = () => (dispatch) => {
       console.log("Lỗi", err);
     });
 };
+export const fetchStaffsByDepartment = (id) => (dispatch) => {
+  return fetch(baseUrl + `departments/${id}`)
+    .then((res) => res.json())
+    .then((res) => dispatch(addStaffsByDepartment(res)))
+    .catch((err) => {
+      console.log("Lỗi", err);
+    });
+};
 export const addStaffsSalary = (staffsSalary) => {
   return {
     type: ActionTypes.ADD_STAFFSSALARY,
     payload: staffsSalary
+  };
+};
+export const addStaffsByDepartment = (staffs) => {
+  return {
+    type: ActionTypes.ADD_STAFFS_BY_DEPARTMENT,
+    payload: staffs
   };
 };
 export const loading = () => ({
