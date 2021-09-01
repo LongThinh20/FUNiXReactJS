@@ -11,8 +11,9 @@ import StaffByDepartment from "./StaffByDepartmentComponent";
 import {
   fetchDepartments,
   fetchStaffs,
-  fetchStaffsByDepartment,
-  fetchStaffsSalary
+  fetchStaffsSalary,
+  postNewStaff,
+  deleteStaff
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -25,19 +26,48 @@ const Main = () => {
   //get state
   const dispatch = useDispatch();
 
-  const { id } = useParams();
-  console.log(id);
-
   const [resultSearch, setResultSearch] = useState([]);
-
+  //fetch API staffs , department
   useEffect(() => {
     dispatch(fetchStaffs());
     dispatch(fetchDepartments());
     dispatch(fetchStaffsSalary());
-    // dispatch(fetchStaffsByDepartment("Dept02"));
   }, [dispatch]);
 
-  const handleAddStaff = (newStaff) => {};
+  //handle Add Staff
+  const handleAddStaff = (newStaff) => {
+    const {
+      overTime,
+      name,
+      doB,
+      departmentId,
+      salaryScale,
+      startDate,
+      annualLeave
+    } = newStaff;
+    const id = STAFFS.length + 1;
+    dispatch(
+      postNewStaff(
+        id,
+        overTime,
+        name,
+        doB,
+        departmentId,
+        salaryScale,
+        startDate,
+        annualLeave
+      )
+    );
+  };
+  //handle Delete Staff
+  const handleDeleteStaff = (id) => {
+    deleteStaff(id);
+  };
+
+  //handle Edit Staff
+  const handleEditStaff = (staff) => {};
+
+  //
 
   const handleSearch = (value) => {
     if (value) {
@@ -79,6 +109,8 @@ const Main = () => {
               resultSearch={resultSearch}
               handleAddStaff={handleAddStaff}
               departments={DEPARTMENTS}
+              handleDeleteStaff={handleDeleteStaff}
+              handleEditStaff={handleEditStaff}
             />
           )}
         />

@@ -1,10 +1,10 @@
-import React from "react";
-import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
+import React, { useState } from "react";
+import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import image from "../img/developer-team.png";
 
 export default function StaffList(props) {
-  const { staffs } = props;
+  const { staffs, handleDeleteStaff, handleEditStaff } = props;
 
   return (
     <section>
@@ -20,6 +20,17 @@ export default function StaffList(props) {
                   </CardBody>
                 </Card>
               </Link>
+              <div className="card_edit">
+                <Button color="danger" onClick={() => handleEditStaff(staff)}>
+                  Sửa
+                </Button>
+                <Button
+                  color="warning"
+                  onClick={() => handleDeleteStaff(staff.id)}
+                >
+                  Xóa
+                </Button>
+              </div>
             </div>
           );
         })}

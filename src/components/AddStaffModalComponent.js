@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import Swal from "sweetalert2";
+import dateformat from "dateformat";
 
 const AddStaffModal = (props) => {
   const { buttonLabel, handleAddStaff } = props;
@@ -23,10 +24,21 @@ const AddStaffModal = (props) => {
   const required = (val) => val && val.length;
   const minLength = (len) => (val) => !val || val.length >= len;
   const isVali = (len) => (val) => !val || val > len;
+
   //validate
 
   const handleSubmit = (values) => {
-    handleAddStaff(values);
+    const newStaff = {
+      overTime: Number(values.overTime),
+      name: values.name,
+      doB: dateformat(values.doB, "dd/mm/yyyy"),
+      salaryScale: Number(values.salaryScale),
+      startDate: dateformat(values.startDate, "dd/mm/yyyy"),
+      departmentId: values.departmentId,
+      annualLeave: Number(values.annualLeave)
+    };
+
+    handleAddStaff(newStaff);
     Swal.fire({
       position: "center-center",
       icon: "success",
@@ -124,34 +136,32 @@ const AddStaffModal = (props) => {
               </Col>
             </Row>
             <Row className="form-group">
-              <Label htmlFor="departmentt" md={4}>
+              <Label htmlFor="departmentId" md={4}>
                 Phòng ban:{" "}
               </Label>
               <Col md={8}>
                 <Control.select
-                  model=".department"
-                  id="departmentt"
-                  name="department"
+                  model=".departmentId"
+                  id="departmentId"
+                  name="departmentId"
                   className="form-control m-1"
                   validators={{
-                    required,
-                    isVali: isVali(0)
+                    required
                   }}
                 >
-                  <option value="0">--Chọn tên phòng ban--</option>
-                  <option value="1">Sale</option>
-                  <option value="2">HR</option>
-                  <option value="3">Marketing</option>
-                  <option value="4">IT</option>
-                  <option value="5">Finance</option>
+                  <option value="">--Chọn tên phòng ban--</option>
+                  <option value="Dept01">Sale</option>
+                  <option value="Dept02">HR</option>
+                  <option value="Dept03">Marketing</option>
+                  <option value="Dept04">IT</option>
+                  <option value="Dept05">Finance</option>
                 </Control.select>
                 <Errors
                   className="text-danger"
-                  model=".department"
+                  model=".departmentId"
                   show="touched"
                   messages={{
-                    required: "Chọn tên phòng ban ...",
-                    isVali: "Chọn tên phòng ban..."
+                    required: "Chọn tên phòng ban ..."
                   }}
                 />
               </Col>

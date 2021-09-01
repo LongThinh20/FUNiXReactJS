@@ -14,7 +14,14 @@ import StaffList from "./StaffListComponent";
 import AddStaffModal from "./AddStaffModalComponent";
 
 export default function Home(props) {
-  const { staffs, handleSearch, resultSearch, handleAddStaff } = props;
+  const {
+    staffs,
+    handleSearch,
+    resultSearch,
+    handleAddStaff,
+    handleDeleteStaff,
+    handleEditStaff
+  } = props;
   const inputRef = useRef(null);
   window.onclick = () => {
     handleSearch("");
@@ -84,9 +91,17 @@ export default function Home(props) {
               </div>
             </div>
             {resultSearch.length === 0 ? (
-              <StaffList staffs={staffs} />
+              <StaffList
+                staffs={staffs}
+                handleDeleteStaff={handleDeleteStaff}
+                handleEditStaff={handleEditStaff}
+              />
             ) : (
-              <StaffList staffs={resultSearch} />
+              <StaffList
+                staffs={resultSearch}
+                handleDeleteStaff={handleDeleteStaff}
+                handleEditStaff={handleEditStaff}
+              />
             )}
           </Container>
         </div>
