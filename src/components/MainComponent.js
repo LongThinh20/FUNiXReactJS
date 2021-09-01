@@ -13,7 +13,7 @@ import {
   fetchStaffs,
   fetchStaffsSalary,
   postNewStaff,
-  deleteStaff
+  deleteStaffs
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -61,14 +61,11 @@ const Main = () => {
   };
   //handle Delete Staff
   const handleDeleteStaff = (id) => {
-    deleteStaff(id);
+    dispatch(deleteStaffs(id));
   };
-
   //handle Edit Staff
   const handleEditStaff = (staff) => {};
-
   //
-
   const handleSearch = (value) => {
     if (value) {
       setResultSearch(
@@ -91,8 +88,8 @@ const Main = () => {
     );
   };
 
-  const StaffWithDepartmentId = ({ match }) => {
-    return <StaffByDepartment match={match} />;
+  const StaffWithDepartmentId = () => {
+    return <StaffByDepartment />;
   };
 
   return (
@@ -119,7 +116,10 @@ const Main = () => {
           path="/department"
           render={() => <Department departments={DEPARTMENTS} />}
         />
-        <Route path="/department/:id" component={StaffWithDepartmentId} />
+        <Route
+          path="/departments/:departmentId"
+          component={StaffWithDepartmentId}
+        />
         <Route path="/salary" render={() => <Salary staffs={STAFFSSALARY} />} />
         <Redirect to="/home" />
       </Switch>

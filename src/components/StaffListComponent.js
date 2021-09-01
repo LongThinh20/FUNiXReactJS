@@ -11,7 +11,10 @@ export default function StaffList(props) {
       <div className="row">
         {staffs.map((staff) => {
           return (
-            <div className="col-6 col-sm-6 col-md-4 col-lg-2 " key={staff.id}>
+            <div
+              className="col-6 col-sm-6 col-md-4 col-lg-2 detail "
+              key={staff.id}
+            >
               <Link to={`/home/${staff.id}`}>
                 <Card className="mt-4">
                   <CardImg src={image} alt={staff.name} />
@@ -21,15 +24,23 @@ export default function StaffList(props) {
                 </Card>
               </Link>
               <div className="card_edit">
-                <Button color="danger" onClick={() => handleEditStaff(staff)}>
-                  Sửa
-                </Button>
-                <Button
-                  color="warning"
-                  onClick={() => handleDeleteStaff(staff.id)}
-                >
-                  Xóa
-                </Button>
+                <div className="btn_edit ">
+                  <Button
+                    color="warning"
+                    className="text-white"
+                    onClick={() => handleEditStaff(staff)}
+                  >
+                    Sửa
+                  </Button>
+                </div>
+                <div className="btn_delete ">
+                  <Button
+                    color="danger"
+                    onClick={() => handleDeleteStaff(staff.id)}
+                  >
+                    Xóa
+                  </Button>
+                </div>
               </div>
             </div>
           );

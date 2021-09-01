@@ -9,10 +9,12 @@ import {
   Container
 } from "reactstrap";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Department(props) {
   const departments = props.departments;
+  let param = useParams();
+  console.log(param.id);
 
   return (
     <section id="department">
@@ -30,7 +32,7 @@ export default function Department(props) {
           {departments.map((item, index) => {
             return (
               <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
-                <Link to={`/department/${item.id}`}>
+                <Link to={`/departments/${item.id}`}>
                   <Card className="m-1">
                     <CardBody>
                       <CardTitle>{item.name}</CardTitle>

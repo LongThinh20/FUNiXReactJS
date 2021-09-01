@@ -195,6 +195,7 @@ export const postNewStaff =
           throw error;
         }
       )
+      .then((response) => dispatch(deleteStaff(response)))
       .then((response) => response.json())
       .then((response) => dispatch(addNewStaf(response)))
       .catch((error) => {
@@ -202,13 +203,12 @@ export const postNewStaff =
       });
   };
 
-export const deleteStaffs = (id) => {
+export const deleteStaffs = (id) => (dispatch) => {
   return fetch(baseUrl + `staffs/${id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json"
-    },
-    credentials: "same-origin"
+    }
   })
     .then(
       (response) => {
@@ -226,7 +226,6 @@ export const deleteStaffs = (id) => {
         throw error;
       }
     )
-
     .catch((error) => {
       console.log("Delete Staff", error.message);
     });
