@@ -3,34 +3,51 @@ import { baseUrl } from "../shared/baseUrl";
 
 export const fetchStaffs = () => (dispatch) => {
   return fetch(baseUrl + "staffs")
-    .then((res) => res.json())
-    .then((res) => dispatch(addStaffs(res)))
-    .catch((err) => {
-      console.log("Lỗi", err);
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => dispatch(addStaffs(response)))
+    .catch((error) => {
+      console.log("Lỗi", error);
     });
 };
 export const fetchDepartments = () => (dispatch) => {
   return fetch(baseUrl + "departments")
-    .then((res) => res.json())
-    .then((res) => dispatch(addDepartments(res)))
-    .catch((err) => {
-      console.log("Lỗi", err);
+    .then((response) => response.json())
+    .then((response) => dispatch(addDepartments(response)))
+    .catch((error) => {
+      console.log("Lỗi", error);
     });
 };
 export const fetchStaffsSalary = () => (dispatch) => {
   return fetch(baseUrl + "staffsSalary")
-    .then((res) => res.json())
-    .then((res) => dispatch(addStaffsSalary(res)))
-    .catch((err) => {
-      console.log("Lỗi", err);
+    .then((response) => response.json())
+    .then((response) => dispatch(addStaffsSalary(response)))
+    .catch((error) => {
+      console.log("Lỗi", error);
     });
 };
 export const fetchStaffsByDepartment = (id) => (dispatch) => {
   return fetch(baseUrl + `departments/${id}`)
-    .then((res) => res.json())
-    .then((res) => dispatch(addStaffsByDepartment(res)))
-    .catch((err) => {
-      console.log("Lỗi", err);
+    .then((response) => response.json())
+    .then((response) => dispatch(addStaffsByDepartment(response)))
+    .catch((error) => {
+      console.log("Lỗi", error);
     });
 };
 export const addStaffsSalary = (staffsSalary) => {

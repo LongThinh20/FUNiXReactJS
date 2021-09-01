@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
 import Home from "./HomeComponent";
 import Salary from "./SalaryComponent";
 import Department from "./DepartmentComponent";
 import StaffDetail from "./StaffDetailComponent";
+import StaffByDepartment from "./StaffByDepartmentComponent";
+
 import {
   fetchDepartments,
   fetchStaffs,
@@ -14,17 +16,17 @@ import {
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
-import StaffsByDepartment from "./StaffsByDepartmentComponent";
-import StaffWithIdd from "./StaffWithId";
 
 const Main = () => {
   //get state
   const STAFFS = useSelector((state) => state.staffs.staffs);
   const DEPARTMENTS = useSelector((state) => state.departments.departments);
   const STAFFSSALARY = useSelector((state) => state.staffs.staffsSalary);
-
   //get state
   const dispatch = useDispatch();
+
+  const { id } = useParams();
+  console.log(id);
 
   const [resultSearch, setResultSearch] = useState([]);
 
@@ -32,8 +34,8 @@ const Main = () => {
     dispatch(fetchStaffs());
     dispatch(fetchDepartments());
     dispatch(fetchStaffsSalary());
-    dispatch(fetchStaffsByDepartment("Dept02"));
-  }, []);
+    // dispatch(fetchStaffsByDepartment("Dept02"));
+  }, [dispatch]);
 
   const handleAddStaff = (newStaff) => {};
 
@@ -59,8 +61,8 @@ const Main = () => {
     );
   };
 
-  const StaffWithIdd2 = ({ match }) => {
-    return <StaffWithIdd />;
+  const StaffWithDepartmentId = ({ match }) => {
+    return <StaffByDepartment match={match} />;
   };
 
   return (
@@ -80,13 +82,12 @@ const Main = () => {
             />
           )}
         />
-
         <Route path="/home/:staffId" component={StaffWithId} />
         <Route
           path="/department"
           render={() => <Department departments={DEPARTMENTS} />}
         />
-        <Route path="/department/:Id" component={StaffWithIdd2} />
+        <Route path="/department/:id" component={StaffWithDepartmentId} />
         <Route path="/salary" render={() => <Salary staffs={STAFFSSALARY} />} />
         <Redirect to="/home" />
       </Switch>

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function Department(props) {
   const departments = props.departments;
+
   return (
     <section id="department">
       <Container>
@@ -22,7 +23,9 @@ export default function Department(props) {
           </BreadcrumbItem>
           <BreadcrumbItem>Dách sách phòng ban</BreadcrumbItem>
         </Breadcrumb>
+
         <h1>Danh sách phòng ban</h1>
+
         <div className="row">
           {departments.map((item, index) => {
             return (
