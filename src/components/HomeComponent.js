@@ -20,7 +20,8 @@ export default function Home(props) {
     resultSearch,
     handleAddStaff,
     handleDeleteStaff,
-    handleEditStaff
+    handleEditStaff,
+    handleResetForm
   } = props;
   const inputRef = useRef(null);
   window.onclick = () => {
@@ -66,6 +67,7 @@ export default function Home(props) {
                   id={staffs.length}
                   staffs={staffs}
                   handleAddStaff={handleAddStaff}
+                  handleResetForm={handleResetForm}
                 />
               </div>
               <div className="col-12 col-md-8 col-lg-5">

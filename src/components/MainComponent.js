@@ -15,13 +15,15 @@ import Department from "./DepartmentComponent";
 import StaffDetail from "./StaffDetailComponent";
 import StaffByDepartment from "./StaffByDepartmentComponent";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { actions } from "react-redux-form";
 
 import {
   fetchDepartments,
   fetchStaffs,
   fetchStaffsSalary,
   postNewStaff,
-  deleteStaffs
+  deleteStaffs,
+  updateStaff
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -72,7 +74,11 @@ const Main = () => {
     dispatch(deleteStaffs(id));
   };
   //handle Edit Staff
-  const handleEditStaff = (staff) => {};
+  const handleEditStaff = (staff) => {
+    console.log(staff);
+
+    dispatch(updateStaff(staff));
+  };
   //handle Search Staff
   const handleSearch = (value) => {
     if (value) {
@@ -84,6 +90,9 @@ const Main = () => {
     } else {
       setResultSearch([]);
     }
+  };
+  const handleResetForm = () => {
+    dispatch(actions.reset("staff"));
   };
   //
   //custom component
@@ -118,6 +127,7 @@ const Main = () => {
                   departments={DEPARTMENTS}
                   handleDeleteStaff={handleDeleteStaff}
                   handleEditStaff={handleEditStaff}
+                  handleResetForm={handleResetForm}
                 />
               )}
             />

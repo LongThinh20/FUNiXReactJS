@@ -3,6 +3,7 @@ import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import image from "../img/developer-team.png";
 import { FadeTransform } from "react-animation-components";
+import EditStaffModal from "./EditStaffModalComponent";
 
 export default function StaffList(props) {
   const { staffs, handleDeleteStaff, handleEditStaff } = props;
@@ -26,13 +27,11 @@ export default function StaffList(props) {
               </Link>
               <div className="card_edit">
                 <div className="btn_edit ">
-                  <Button
-                    color="warning"
-                    className="text-white"
-                    onClick={() => handleEditStaff(staff)}
-                  >
-                    Sửa
-                  </Button>
+                  <EditStaffModal
+                    buttonLabel={"Sửa"}
+                    staff={staff}
+                    handleEditStaff={handleEditStaff}
+                  />
                 </div>
                 <div className="btn_delete ">
                   <Button

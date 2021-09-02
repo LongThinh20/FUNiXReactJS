@@ -1,4 +1,4 @@
-export const InitialForm = {
+export const initialForm = {
   overTime: "",
   name: "",
   doB: "",

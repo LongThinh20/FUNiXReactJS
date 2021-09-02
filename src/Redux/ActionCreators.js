@@ -144,6 +144,9 @@ export const addNewStaf = (newStaff) => ({
 export const deleteStaff = () => ({
   type: ActionTypes.DELETE_STAFF
 });
+export const updateStaff = () => ({
+  type: ActionTypes.UPDATE_STAFF
+});
 //action
 //
 //
@@ -195,7 +198,6 @@ export const postNewStaff =
           throw error;
         }
       )
-      .then((response) => dispatch(deleteStaff(response)))
       .then((response) => response.json())
       .then((response) => dispatch(addNewStaf(response)))
       .catch((error) => {
@@ -228,5 +230,35 @@ export const deleteStaffs = (id) => (dispatch) => {
     .catch((error) => {
       console.log("Delete Staff", error.message);
     });
+};
+
+export const handleUpdateStaff = (staff) => (dispatch) => {
+  return fetch(baseUrl + "staffs", {
+    method: "PATCH",
+    body: JSON.stringify(staff),
+    headers: {
+      "Content-type": "application/json"
+    },
+    credentials: "same-origin"
+  })
+    .then(
+      (reponse) => {
+        if (reponse.ok) {
+          return response;
+        } else {
+          let error = new Error(
+            `Error ${error.status} : ${reponse.statusText}`
+          );
+          error.reponse = reponse;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => dispatch(updateStaff(response)))
+    .catch((error) => console.log("update staff", error.message));
 };
 //handle

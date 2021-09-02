@@ -10,11 +10,11 @@ import {
   Label
 } from "reactstrap";
 import { Control, LocalForm, Errors, Form } from "react-redux-form";
-import Swal from "sweetalert2";
+
 import dateformat from "dateformat";
 
-const AddStaffModal = (props) => {
-  const { buttonLabel, handleAddStaff, handleResetForm } = props;
+const EditStaffModal = (props) => {
+  const { buttonLabel, handleResetForm, staff, handleEditStaff } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -29,6 +29,7 @@ const AddStaffModal = (props) => {
 
   const handleSubmit = (values) => {
     const newStaff = {
+      id: staff.id,
       overTime: Number(values.overTime),
       name: values.name,
       doB: dateformat(values.doB, "dd/mm/yyyy"),
@@ -38,16 +39,13 @@ const AddStaffModal = (props) => {
       annualLeave: Number(values.annualLeave)
     };
 
-    handleAddStaff(newStaff);
-    Swal.fire({
-      position: "center-center",
-      icon: "success",
-      title: "Thêm nhân viên thành công !",
-      showConfirmButton: false,
-      timer: 1500
-    });
-    handleResetForm();
+    console.log(newStaff);
+    handleEditStaff(newStaff);
+
+    // handleResetForm();
   };
+
+  const nameValue = "Nam";
 
   return (
     <div>
@@ -55,7 +53,7 @@ const AddStaffModal = (props) => {
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>THÊM NHÂN VIÊN</ModalHeader>
+        <ModalHeader toggle={toggle}>CẬP NHẬT THÔNG TIN NHÂN VIÊN</ModalHeader>
         <ModalBody>
           <Form model="staff" onSubmit={(values) => handleSubmit(values)}>
             <Row className="form-group">
@@ -69,6 +67,7 @@ const AddStaffModal = (props) => {
                   name="name"
                   placeholder="Nhập họ và tên ... "
                   className="form-control m-1"
+                  defaultValue={staff.name}
                   validators={{
                     required,
                     minLength: minLength(3)
@@ -96,6 +95,7 @@ const AddStaffModal = (props) => {
                   id="doB"
                   name="doB"
                   className="form-control m-1"
+                  defaultValue={dateformat(staff.doB, "yyyy-mm-dd")}
                   validators={{
                     required
                   }}
@@ -121,6 +121,7 @@ const AddStaffModal = (props) => {
                   id="startDate"
                   name="startDate"
                   className="form-control m-1"
+                  defaultValue={dateformat(staff.startDate, "yyyy-mm-dd")}
                   validators={{
                     required
                   }}
@@ -145,6 +146,7 @@ const AddStaffModal = (props) => {
                   id="departmentId"
                   name="departmentId"
                   className="form-control m-1"
+                  defaultValue={staff.departmentId}
                   validators={{
                     required
                   }}
@@ -179,7 +181,7 @@ const AddStaffModal = (props) => {
                   className="form-control m-1"
                   placeholder="1-->3"
                   validators={{ required, isVali: isVali(0) }}
-                  defaultValue="1"
+                  defaultValue={staff.salaryScale}
                 />
                 <Errors
                   className="text-danger"
@@ -204,8 +206,8 @@ const AddStaffModal = (props) => {
                   name="annualLeave"
                   className="form-control m-1"
                   placeholder="Nhập số ngày nghỉ còn lại..."
+                  defaultValue={staff.annualLeave}
                   validators={{ required, isVali: isVali(-1) }}
-                  defaultValue="0"
                 />
                 <Errors
                   className="text-danger"
@@ -230,7 +232,7 @@ const AddStaffModal = (props) => {
                   name="overTime"
                   className="form-control m-1"
                   placeholder="Nhập số ngày nghỉ còn lại..."
-                  defaultValue="0"
+                  defaultValue={staff.overTime}
                   validators={{
                     required,
                     isVali: isVali(-1)
@@ -254,7 +256,7 @@ const AddStaffModal = (props) => {
                 className="text-white mt-2"
                 style={{ width: "80%", margin: "0 auto" }}
               >
-                THÊM NHÂN VIÊN
+                CẬP NHẬT NHÂN VIÊN
               </Button>
             </Row>
           </Form>
@@ -269,4 +271,4 @@ const AddStaffModal = (props) => {
   );
 };
 
-export default AddStaffModal;
+export default EditStaffModal;
