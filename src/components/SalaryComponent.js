@@ -23,10 +23,7 @@ export default function Salary(props) {
       setActiveIndex(3);
       return setStaffLst(
         staffsLst.sort((a, b) => {
-          if (
-            a.salaryScale * salaryBasic + 200000 * a.overTime >
-            b.salaryScale * salaryBasic + 200000 * b.overTime
-          ) {
+          if (a.salaryScale > b.salaryScale) {
             return -1;
           }
           return 0;
@@ -37,10 +34,7 @@ export default function Salary(props) {
       setActiveIndex(4);
       setStaffLst(
         staffsLst.sort((a, b) => {
-          if (
-            a.salaryScale * salaryBasic + 200000 * a.overTime <
-            b.salaryScale * salaryBasic + 200000 * b.overTime
-          ) {
+          if (a.salaryScale < b.salaryScale) {
             return -1;
           }
           return 0;

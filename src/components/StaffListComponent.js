@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import image from "../img/developer-team.png";
+import { FadeTransform } from "react-animation-components";
 
 export default function StaffList(props) {
   const { staffs, handleDeleteStaff, handleEditStaff } = props;

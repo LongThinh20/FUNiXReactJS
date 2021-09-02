@@ -49,36 +49,39 @@ export default function StaffByDepartment(props) {
         </Breadcrumb>
         <div id="staffDetail">
           <h1>Danh sách nhân viên </h1>
-
-          {staffs.map((staff) => {
-            return (
-              <Row className="mt-4">
-                <div className="col-sm-12 col-md-4 col-lg-3">
-                  <img src={image} className="img-fluid" alt="" />
-                </div>
-                <div className="col-sm-12 col-md-8 col-lg-9">
-                  <Card>
-                    <CardBody>
-                      <dl className="row">
-                        <dt className="col-6">Họ và tên: </dt>
-                        <dd className="col-6">{staff.name}</dd>
-                        <dt className="col-6">Ngày sinh: </dt>
-                        <dd className="col-6"> {staff.doB}</dd>
-                        <dt className="col-6">Ngày vào công ty: </dt>
-                        <dd className="col-6">{staff.startDate}</dd>
-                        <dt className="col-6">Phòng ban: </dt>
-                        <dd className="col-6">{renderName(departmentId)}</dd>
-                        <dt className="col-6">Số ngày nghỉ còn lại: </dt>
-                        <dd className="col-6">{staff.annualLeave}</dd>
-                        <dt className="col-6">Số ngày làm thêm: </dt>
-                        <dd className="col-6">{staff.overTime}</dd>
-                      </dl>
-                    </CardBody>
-                  </Card>
-                </div>
-              </Row>
-            );
-          })}
+          {staffs
+            ? staffs.map((staff) => {
+                return (
+                  <Row className="mt-4">
+                    <div className="col-sm-12 col-md-4 col-lg-3">
+                      <img src={image} className="img-fluid" alt="" />
+                    </div>
+                    <div className="col-sm-12 col-md-8 col-lg-9">
+                      <Card>
+                        <CardBody>
+                          <dl className="row">
+                            <dt className="col-6">Họ và tên: </dt>
+                            <dd className="col-6">{staff.name}</dd>
+                            <dt className="col-6">Ngày sinh: </dt>
+                            <dd className="col-6"> {staff.doB}</dd>
+                            <dt className="col-6">Ngày vào công ty: </dt>
+                            <dd className="col-6">{staff.startDate}</dd>
+                            <dt className="col-6">Phòng ban: </dt>
+                            <dd className="col-6">
+                              {renderName(departmentId)}
+                            </dd>
+                            <dt className="col-6">Số ngày nghỉ còn lại: </dt>
+                            <dd className="col-6">{staff.annualLeave}</dd>
+                            <dt className="col-6">Số ngày làm thêm: </dt>
+                            <dd className="col-6">{staff.overTime}</dd>
+                          </dl>
+                        </CardBody>
+                      </Card>
+                    </div>
+                  </Row>
+                );
+              })
+            : ""}
         </div>
       </Container>
     </section>

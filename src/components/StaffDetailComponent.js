@@ -11,7 +11,7 @@ import image from "../img/developer-team.png";
 
 export default function StaffDetail(props) {
   const { name, doB, startDate, annualLeave, overTime, departmentId } =
-    props.staff[0];
+    props.staff[0] || "";
 
   const renderName = (departmentId) => {
     const obj = {

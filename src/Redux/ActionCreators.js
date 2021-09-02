@@ -202,7 +202,6 @@ export const postNewStaff =
         console.log("post newStaff", error.message);
       });
   };
-
 export const deleteStaffs = (id) => (dispatch) => {
   return fetch(baseUrl + `staffs/${id}`, {
     method: "DELETE",
