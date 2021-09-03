@@ -2,8 +2,6 @@ import * as ActionTypes from "./actionType";
 
 export const Staffs = (
   state = {
-    // isLoading: true,
-    // errMess: null,
     staffs: [],
     staffsSalary: [],
     staffsByDepartment: []

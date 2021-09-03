@@ -9,9 +9,9 @@ import {
   Row,
   Label
 } from "reactstrap";
-import { Control, LocalForm, Errors, Form } from "react-redux-form";
+import { Control, Errors, Form } from "react-redux-form";
 import Swal from "sweetalert2";
-import dateformat from "dateformat";
+import moment from "moment";
 
 const AddStaffModal = (props) => {
   const { buttonLabel, handleAddStaff, handleResetForm } = props;
@@ -31,12 +31,14 @@ const AddStaffModal = (props) => {
     const newStaff = {
       overTime: Number(values.overTime),
       name: values.name,
-      doB: dateformat(values.doB, "dd/mm/yyyy"),
+      doB: moment(values.doB).format("DD/MM/YYYY"),
       salaryScale: Number(values.salaryScale),
-      startDate: dateformat(values.startDate, "dd/mm/yyyy"),
+      startDate: moment(values.startDate).format("DD/MM/YYYY"),
       departmentId: values.departmentId,
       annualLeave: Number(values.annualLeave)
     };
+
+    console.log(newStaff);
 
     handleAddStaff(newStaff);
     Swal.fire({

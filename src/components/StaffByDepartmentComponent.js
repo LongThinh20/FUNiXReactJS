@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import {
   Card,
-  CardTitle,
-  CardImg,
   CardBody,
   Breadcrumb,
   BreadcrumbItem,
@@ -36,7 +34,7 @@ export default function StaffByDepartment(props) {
 
   useEffect(() => {
     dispatch(fetchStaffsByDepartment(departmentId));
-  }, [departmentId]);
+  }, []);
 
   return (
     <section id="department">

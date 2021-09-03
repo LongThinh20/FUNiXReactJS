@@ -137,16 +137,6 @@ export const addDepartments = (departments) => {
     payload: departments
   };
 };
-export const addNewStaf = (newStaff) => ({
-  type: ActionTypes.ADD_NEW_STAFF,
-  payload: newStaff
-});
-export const deleteStaff = () => ({
-  type: ActionTypes.DELETE_STAFF
-});
-export const updateStaff = () => ({
-  type: ActionTypes.UPDATE_STAFF
-});
 //action
 //
 //
@@ -198,13 +188,12 @@ export const postNewStaff =
           throw error;
         }
       )
-      .then((response) => response.json())
-      .then((response) => dispatch(addNewStaf(response)))
+      .then(() => dispatch(fetchStaffs()))
       .catch((error) => {
         console.log("post newStaff", error.message);
       });
   };
-export const deleteStaffs = (id) => (dispatch) => {
+export const deleteStaff = (id) => (dispatch) => {
   return fetch(baseUrl + `staffs/${id}`, {
     method: "DELETE",
     headers: {
@@ -227,12 +216,13 @@ export const deleteStaffs = (id) => (dispatch) => {
         throw error;
       }
     )
+    .then(() => dispatch(addStaffs()))
     .catch((error) => {
       console.log("Delete Staff", error.message);
     });
 };
 
-export const handleUpdateStaff = (staff) => (dispatch) => {
+export const updateStaff = (staff) => (dispatch) => {
   return fetch(baseUrl + "staffs", {
     method: "PATCH",
     body: JSON.stringify(staff),
@@ -242,14 +232,14 @@ export const handleUpdateStaff = (staff) => (dispatch) => {
     credentials: "same-origin"
   })
     .then(
-      (reponse) => {
-        if (reponse.ok) {
+      (response) => {
+        if (response.ok) {
           return response;
         } else {
           let error = new Error(
-            `Error ${error.status} : ${reponse.statusText}`
+            `Error ${response.status} : ${response.statusText}`
           );
-          error.reponse = reponse;
+          error.response = response;
           throw error;
         }
       },
@@ -257,8 +247,7 @@ export const handleUpdateStaff = (staff) => (dispatch) => {
         throw error;
       }
     )
-    .then((response) => response.json())
-    .then((response) => dispatch(updateStaff(response)))
+    .then(() => addStaffs())
     .catch((error) => console.log("update staff", error.message));
 };
 //handle

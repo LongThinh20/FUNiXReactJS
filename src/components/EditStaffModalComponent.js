@@ -9,9 +9,8 @@ import {
   Row,
   Label
 } from "reactstrap";
-import { Control, LocalForm, Errors, Form } from "react-redux-form";
-
-import dateformat from "dateformat";
+import { Control, Errors, Form } from "react-redux-form";
+import moment from "moment";
 
 const EditStaffModal = (props) => {
   const { buttonLabel, handleResetForm, staff, handleEditStaff } = props;
@@ -32,20 +31,17 @@ const EditStaffModal = (props) => {
       id: staff.id,
       overTime: Number(values.overTime),
       name: values.name,
-      doB: dateformat(values.doB, "dd/mm/yyyy"),
-      salaryScale: Number(values.salaryScale),
-      startDate: dateformat(values.startDate, "dd/mm/yyyy"),
+      doB: moment(values.doB).format("DD/MM/YYYY"),
       departmentId: values.departmentId,
+      salaryScale: Number(values.salaryScale),
+      startDate: moment(values.startDate).format("DD/MM/YYYY"),
       annualLeave: Number(values.annualLeave)
     };
 
-    console.log(newStaff);
     handleEditStaff(newStaff);
 
     // handleResetForm();
   };
-
-  const nameValue = "Nam";
 
   return (
     <div>
@@ -95,7 +91,7 @@ const EditStaffModal = (props) => {
                   id="doB"
                   name="doB"
                   className="form-control m-1"
-                  defaultValue={dateformat(staff.doB, "yyyy-mm-dd")}
+                  defaultValue={moment(staff.doB).format("YYYY-MM-DD")}
                   validators={{
                     required
                   }}
@@ -121,7 +117,8 @@ const EditStaffModal = (props) => {
                   id="startDate"
                   name="startDate"
                   className="form-control m-1"
-                  defaultValue={dateformat(staff.startDate, "yyyy-mm-dd")}
+                  defaultValue={moment(staff.startDate).format("YYYY-MM-DD")}
+                  // defaultValue={staff.startDate}
                   validators={{
                     required
                   }}

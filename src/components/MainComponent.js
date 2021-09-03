@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Switch,
-  Route,
-  Redirect,
-  useParams,
-  withRouter,
-  useLocation
-} from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
 import Home from "./HomeComponent";
@@ -22,7 +15,7 @@ import {
   fetchStaffs,
   fetchStaffsSalary,
   postNewStaff,
-  deleteStaffs,
+  deleteStaff,
   updateStaff
 } from "../Redux/ActionCreators";
 
@@ -71,12 +64,10 @@ const Main = () => {
   };
   //handle Delete Staff
   const handleDeleteStaff = (id) => {
-    dispatch(deleteStaffs(id));
+    dispatch(deleteStaff(id));
   };
   //handle Edit Staff
   const handleEditStaff = (staff) => {
-    console.log(staff);
-
     dispatch(updateStaff(staff));
   };
   //handle Search Staff

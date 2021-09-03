@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import image from "../img/developer-team.png";
-import { FadeTransform } from "react-animation-components";
 import EditStaffModal from "./EditStaffModalComponent";
 
 export default function StaffList(props) {
