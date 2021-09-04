@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -29,22 +29,22 @@ export default function Footer() {
             <div className="col-md-12 col-lg-6">
               <ul className="listIcon">
                 <li>
-                  <Link href="#" >
+                  <Link to="#">
                     <i className="fab fa-facebook-f" />
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link to="#">
                     <i className="fab fa-google-plus-g" />
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link to="#">
                     <i className="fab fa-youtube" />
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link to="#">
                     <i className="fab fa-twitter" />
                   </Link>
                 </li>

@@ -13,7 +13,7 @@ import { Control, Errors, Form } from "react-redux-form";
 import moment from "moment";
 
 const EditStaffModal = (props) => {
-  const { buttonLabel, handleResetForm, staff, handleEditStaff } = props;
+  const { buttonLabel, staff, handleEditStaff } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -39,8 +39,6 @@ const EditStaffModal = (props) => {
     };
 
     handleEditStaff(newStaff);
-
-    // handleResetForm();
   };
 
   return (
