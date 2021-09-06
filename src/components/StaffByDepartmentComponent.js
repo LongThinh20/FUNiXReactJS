@@ -8,9 +8,9 @@ import {
   Row
 } from "reactstrap";
 import { Link, useParams } from "react-router-dom";
-import image from "../img/developer-team.png";
 import { fetchStaffsByDepartment } from "../Redux/ActionCreators";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 export default function StaffByDepartment(props) {
   const { departmentId } = useParams();
@@ -50,9 +50,9 @@ export default function StaffByDepartment(props) {
           {staffs
             ? staffs.map((staff) => {
                 return (
-                  <Row className="mt-4">
+                  <Row className="mt-4" key={staff.id}>
                     <div className="col-sm-12 col-md-4 col-lg-3">
-                      <img src={image} className="img-fluid" alt="" />
+                      <img src={staff.image} className="img-fluid" alt="" />
                     </div>
                     <div className="col-sm-12 col-md-8 col-lg-9">
                       <Card>
@@ -61,9 +61,13 @@ export default function StaffByDepartment(props) {
                             <dt className="col-6">Họ và tên: </dt>
                             <dd className="col-6">{staff.name}</dd>
                             <dt className="col-6">Ngày sinh: </dt>
-                            <dd className="col-6"> {staff.doB}</dd>
+                            <dd className="col-6">
+                              {moment(staff.doB).format("DD/MM/YYYY")}
+                            </dd>
                             <dt className="col-6">Ngày vào công ty: </dt>
-                            <dd className="col-6">{staff.startDate}</dd>
+                            <dd className="col-6">
+                              {moment(staff.startDate).format("DD/MM/YYYY")}
+                            </dd>
                             <dt className="col-6">Phòng ban: </dt>
                             <dd className="col-6">
                               {renderName(departmentId)}

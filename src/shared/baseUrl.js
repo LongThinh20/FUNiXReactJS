@@ -1,1 +1,1 @@
-export const baseUrl = " http://35.202.203.162:8080/ReactJSRestAPI/";
+export const baseUrl = "https://rjs101xbackend.herokuapp.com/";

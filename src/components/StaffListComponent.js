@@ -1,11 +1,10 @@
 import React from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import image from "../img/developer-team.png";
 import EditStaffModal from "./EditStaffModalComponent";
 
 export default function StaffList(props) {
-  const { staffs, handleDeleteStaff, handleEditStaff } = props;
+  const { staffs, handleDeleteStaff, handleEditStaff, handleResetForm } = props;
 
   return (
     <section>
@@ -18,7 +17,7 @@ export default function StaffList(props) {
             >
               <Link to={`/home/${staff.id}`}>
                 <Card className="mt-4">
-                  <CardImg src={image} alt={staff.name} />
+                  <CardImg src={staff.image} alt={staff.name} />
                   <CardBody>
                     <CardTitle>{staff.name}</CardTitle>
                   </CardBody>
@@ -30,6 +29,7 @@ export default function StaffList(props) {
                     buttonLabel={"Sửa"}
                     staff={staff}
                     handleEditStaff={handleEditStaff}
+                    handleResetForm={handleResetForm}
                   />
                 </div>
                 <div className="btn_delete ">

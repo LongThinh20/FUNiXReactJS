@@ -6,7 +6,8 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
-  Form
+  Form,
+  Fade
 } from "reactstrap";
 
 import team from "../img/developer-team.png";
@@ -62,6 +63,7 @@ export default function Home(props) {
             <h1>Danh sách nhân viên</h1>
             <div className="row">
               <div className="col-12 col-md-4">
+                {" "}
                 <AddStaffModal
                   buttonLabel={"THÊM NHÂN VIÊN"}
                   id={staffs.length}
@@ -97,12 +99,14 @@ export default function Home(props) {
                 staffs={staffs}
                 handleDeleteStaff={handleDeleteStaff}
                 handleEditStaff={handleEditStaff}
+                handleResetForm={handleResetForm}
               />
             ) : (
               <StaffList
                 staffs={resultSearch}
                 handleDeleteStaff={handleDeleteStaff}
                 handleEditStaff={handleEditStaff}
+                handleResetForm={handleResetForm}
               />
             )}
           </Container>

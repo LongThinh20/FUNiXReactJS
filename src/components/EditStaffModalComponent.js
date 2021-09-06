@@ -13,7 +13,7 @@ import { Control, Errors, Form } from "react-redux-form";
 import moment from "moment";
 
 const EditStaffModal = (props) => {
-  const { buttonLabel, staff, handleEditStaff } = props;
+  const { buttonLabel, staff, handleEditStaff, handleResetForm } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -23,6 +23,7 @@ const EditStaffModal = (props) => {
   const required = (val) => val && val.length;
   const minLength = (len) => (val) => !val || val.length >= len;
   const isVali = (len) => (val) => !val || val > len;
+  const required2 = (val) => val != "";
 
   //validate
 
@@ -31,14 +32,19 @@ const EditStaffModal = (props) => {
       id: staff.id,
       overTime: Number(values.overTime),
       name: values.name,
-      doB: moment(values.doB).format("DD/MM/YYYY"),
+      doB: moment(values.doB).toISOString(),
       departmentId: values.departmentId,
       salaryScale: Number(values.salaryScale),
-      startDate: moment(values.startDate).format("DD/MM/YYYY"),
-      annualLeave: Number(values.annualLeave)
+      startDate: moment(values.startDate).toISOString(),
+      annualLeave: Number(values.annualLeave),
+      image: "/asset/images/alberto.png"
     };
 
+    console.log(newStaff);
+
     handleEditStaff(newStaff);
+    handleResetForm();
+    toggle();
   };
 
   return (
@@ -116,7 +122,6 @@ const EditStaffModal = (props) => {
                   name="startDate"
                   className="form-control m-1"
                   defaultValue={moment(staff.startDate).format("YYYY-MM-DD")}
-                  // defaultValue={staff.startDate}
                   validators={{
                     required
                   }}
@@ -175,7 +180,7 @@ const EditStaffModal = (props) => {
                   name="salaryScale"
                   className="form-control m-1"
                   placeholder="1-->3"
-                  validators={{ required, isVali: isVali(0) }}
+                  validators={{ required2, isVali: isVali(0) }}
                   defaultValue={staff.salaryScale}
                 />
                 <Errors
@@ -183,7 +188,7 @@ const EditStaffModal = (props) => {
                   model=".salaryScale"
                   show="touched"
                   messages={{
-                    required: "Nhập hệ số lương...",
+                    required2: "Nhập hệ số lương...",
                     isVali: "Hệ số lương chưa hợp lệ"
                   }}
                 />
@@ -202,14 +207,14 @@ const EditStaffModal = (props) => {
                   className="form-control m-1"
                   placeholder="Nhập số ngày nghỉ còn lại..."
                   defaultValue={staff.annualLeave}
-                  validators={{ required, isVali: isVali(-1) }}
+                  validators={{ required2, isVali: isVali(-1) }}
                 />
                 <Errors
                   className="text-danger"
                   model=".annualLeave"
                   show="touched"
                   messages={{
-                    required: "Nhập số ngày nghỉ còn lại",
+                    required2: "Nhập số ngày nghỉ còn lại",
                     isVali: "Số ngày nghỉ còn lại chưa hợp lệ"
                   }}
                 />
@@ -229,7 +234,7 @@ const EditStaffModal = (props) => {
                   placeholder="Nhập số ngày nghỉ còn lại..."
                   defaultValue={staff.overTime}
                   validators={{
-                    required,
+                    required2,
                     isVali: isVali(-1)
                   }}
                 />
@@ -238,7 +243,7 @@ const EditStaffModal = (props) => {
                   model=".overTime"
                   show="touched"
                   messages={{
-                    required: "Chưa nhập số giờ làm thêm",
+                    required2: "Chưa nhập số giờ làm thêm",
                     isVali: "Số giờ làm thêm chưa hợp lệ"
                   }}
                 />

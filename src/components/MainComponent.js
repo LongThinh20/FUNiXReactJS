@@ -9,6 +9,7 @@ import StaffDetail from "./StaffDetailComponent";
 import StaffByDepartment from "./StaffByDepartmentComponent";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { actions } from "react-redux-form";
+import Swal from "sweetalert2";
 
 import {
   fetchDepartments,
@@ -46,7 +47,8 @@ const Main = () => {
       departmentId,
       salaryScale,
       startDate,
-      annualLeave
+      annualLeave,
+      image
     } = newStaff;
     const id = STAFFS.length + 1;
     dispatch(
@@ -58,13 +60,26 @@ const Main = () => {
         departmentId,
         salaryScale,
         startDate,
-        annualLeave
+        annualLeave,
+        image
       )
     );
   };
   //handle Delete Staff
   const handleDeleteStaff = (id) => {
-    dispatch(deleteStaff(id));
+    Swal.fire({
+      title: "Bạn có chắc không ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Xóa",
+      cancelButtonText: "Hủy"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteStaff(id));
+      }
+    });
   };
   //handle Edit Staff
   const handleEditStaff = (staff) => {

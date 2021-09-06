@@ -1,5 +1,6 @@
 import * as ActionTypes from "./actionType";
 import { baseUrl } from "../shared/baseUrl";
+import Swal from "sweetalert2";
 
 //fetch API
 export const fetchStaffs = () => (dispatch) => {
@@ -150,7 +151,8 @@ export const postNewStaff =
     departmentId,
     salaryScale,
     startDate,
-    annualLeave
+    annualLeave,
+    image
   ) =>
   (dispatch) => {
     const newStaff = {
@@ -161,7 +163,8 @@ export const postNewStaff =
       departmentId: departmentId,
       salaryScale: salaryScale,
       startDate: startDate,
-      annualLeave: annualLeave
+      annualLeave: annualLeave,
+      image
     };
 
     return fetch(baseUrl + "staffs", {
@@ -189,6 +192,15 @@ export const postNewStaff =
         }
       )
       .then(() => dispatch(fetchStaffs()))
+      .then(() =>
+        Swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "Thêm nhân viên thành công !",
+          showConfirmButton: false,
+          timer: 1500
+        })
+      )
       .catch((error) => {
         console.log("post newStaff", error.message);
       });
@@ -216,7 +228,16 @@ export const deleteStaff = (id) => (dispatch) => {
         throw error;
       }
     )
-    .then(() => dispatch(addStaffs()))
+    .then(() => dispatch(fetchStaffs()))
+    .then(() =>
+      Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: "Xóa nhân viên thành công !",
+        showConfirmButton: false,
+        timer: 1500
+      })
+    )
     .catch((error) => {
       console.log("Delete Staff", error.message);
     });
@@ -247,7 +268,16 @@ export const updateStaff = (staff) => (dispatch) => {
         throw error;
       }
     )
-    .then(() => addStaffs())
+    .then(() => dispatch(fetchStaffs()))
+    .then(() =>
+      Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: "Sửa thành công !",
+        showConfirmButton: false,
+        timer: 1000
+      })
+    )
     .catch((error) => console.log("update staff", error.message));
 };
 //handle

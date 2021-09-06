@@ -7,10 +7,11 @@ import {
   CardBody
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import image from "../img/developer-team.png";
+import moment from "moment";
+// import image from "../img/developer-team.png";
 
 export default function StaffDetail(props) {
-  const { name, doB, startDate, annualLeave, overTime, departmentId } =
+  const { name, doB, startDate, annualLeave, overTime, departmentId, image } =
     props.staff[0] || "";
 
   const renderName = (departmentId) => {
@@ -50,9 +51,13 @@ export default function StaffDetail(props) {
                     <dt className="col-6">Họ và tên: </dt>
                     <dd className="col-6">{name}</dd>
                     <dt className="col-6">Ngày sinh: </dt>
-                    <dd className="col-6"> {doB}</dd>
+                    <dd className="col-6">
+                      {moment(doB).format("DD/MM/YYYY")}
+                    </dd>
                     <dt className="col-6">Ngày vào công ty: </dt>
-                    <dd className="col-6">{startDate}</dd>
+                    <dd className="col-6">
+                      {moment(startDate).format("DD/MM/YYYY")}
+                    </dd>
                     <dt className="col-6">Phòng ban: </dt>
                     <dd className="col-6">{renderName(departmentId)}</dd>
                     <dt className="col-6">Số ngày nghỉ còn lại: </dt>
