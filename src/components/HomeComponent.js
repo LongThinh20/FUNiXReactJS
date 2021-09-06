@@ -6,8 +6,7 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
-  Form,
-  Fade
+  Form
 } from "reactstrap";
 
 import team from "../img/developer-team.png";

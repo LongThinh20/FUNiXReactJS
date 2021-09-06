@@ -119,13 +119,6 @@ export const addStaffsByDepartment = (staffs) => {
     payload: staffs
   };
 };
-export const loading = () => ({
-  type: ActionTypes.LOADING
-});
-export const staffsFailed = (errmess) => ({
-  type: ActionTypes.STAFFS_FAILED,
-  payload: errmess
-});
 export const addStaffs = (staffs) => {
   return {
     type: ActionTypes.ADD_STAFFS,

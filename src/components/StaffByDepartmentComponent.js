@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Card,
   CardBody,
@@ -8,13 +8,13 @@ import {
   Row
 } from "reactstrap";
 import { Link, useParams } from "react-router-dom";
-import { fetchStaffsByDepartment } from "../Redux/ActionCreators";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import moment from "moment";
 
 export default function StaffByDepartment(props) {
+  const { getId } = props;
   const { departmentId } = useParams();
-  const dispatch = useDispatch();
+  getId(departmentId);
   const staffs = useSelector((state) => state.staffs.staffsByDepartment);
 
   const renderName = (departmentId) => {
@@ -31,10 +31,6 @@ export default function StaffByDepartment(props) {
       }
     }
   };
-
-  useEffect(() => {
-    dispatch(fetchStaffsByDepartment(departmentId));
-  }, []);
 
   return (
     <section id="department">

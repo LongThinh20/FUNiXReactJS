@@ -86,7 +86,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(11px)">
+            <Transform in exitTransform="translateX(12px)">
               <Row className="form-group">
                 <Label htmlFor="doB" md={4}>
                   Ngày sinh:{" "}
@@ -113,7 +113,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(12px)">
+            <Transform in exitTransform="translateX(14px)">
               <Row className="form-group">
                 <Label htmlFor="startDate" md={4}>
                   Ngày vào công ty:{" "}
@@ -140,7 +140,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(13px)">
+            <Transform in exitTransform="translateX(16px)">
               <Row className="form-group">
                 <Label htmlFor="departmentId" md={4}>
                   Phòng ban:{" "}
@@ -173,7 +173,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(14px)">
+            <Transform in exitTransform="translateX(18px)">
               <Row className="form-group">
                 <Label htmlFor="salaryScale" md={4}>
                   Hệ số lương :{" "}
@@ -201,7 +201,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(15px)">
+            <Transform in exitTransform="translateX(20px)">
               <Row className="form-group">
                 <Label htmlFor="annualLeave" md={4}>
                   Số ngày nghỉ còn lại:{" "}
@@ -229,7 +229,7 @@ const AddStaffModal = (props) => {
                 </Col>
               </Row>
             </Transform>
-            <Transform in exitTransform="translateX(16px)">
+            <Transform in exitTransform="translateX(22px)">
               <Row className="form-group">
                 <Label htmlFor="overTime" md={4}>
                   Số giờ làm thêm:{" "}

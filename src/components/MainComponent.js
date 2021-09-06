@@ -17,12 +17,18 @@ import {
   fetchStaffsSalary,
   postNewStaff,
   deleteStaff,
-  updateStaff
+  updateStaff,
+  fetchStaffsByDepartment
 } from "../Redux/ActionCreators";
 
 import { useDispatch, useSelector } from "react-redux";
 
 const Main = () => {
+  //get id from Department
+  const [Id, setId] = useState("");
+  const getId = (id) => {
+    setId(id);
+  };
   //get state
   const STAFFS = useSelector((state) => state.staffs.staffs);
   const DEPARTMENTS = useSelector((state) => state.departments.departments);
@@ -37,6 +43,13 @@ const Main = () => {
     dispatch(fetchDepartments());
     dispatch(fetchStaffsSalary());
   }, [dispatch]);
+
+  // const idddd = getId();
+  // console.log(idddd);
+
+  useEffect(() => {
+    dispatch(fetchStaffsByDepartment(Id));
+  }, [Id, dispatch]);
   //
   //handle Add Staff
   const handleAddStaff = (newStaff) => {
@@ -100,6 +113,7 @@ const Main = () => {
   const handleResetForm = () => {
     dispatch(actions.reset("staff"));
   };
+
   //
   //custom component
   const StaffWithId = ({ match }) => {
@@ -110,9 +124,6 @@ const Main = () => {
         )}
       />
     );
-  };
-  const StaffWithDepartmentId = () => {
-    return <StaffByDepartment />;
   };
   //custom component
   return (
@@ -144,7 +155,7 @@ const Main = () => {
             />
             <Route
               path="/departments/:departmentId"
-              component={StaffWithDepartmentId}
+              render={() => <StaffByDepartment getId={getId} />}
             />
             <Route
               path="/salary"
