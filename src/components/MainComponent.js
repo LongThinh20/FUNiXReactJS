@@ -33,10 +33,12 @@ const Main = () => {
   const STAFFS = useSelector((state) => state.staffs.staffs);
   const DEPARTMENTS = useSelector((state) => state.departments.departments);
   const STAFFSSALARY = useSelector((state) => state.staffs.staffsSalary);
+
   //get state
   const dispatch = useDispatch();
   const location = useLocation();
   const [resultSearch, setResultSearch] = useState([]);
+
   //fetch API staffs , department
   useEffect(() => {
     dispatch(fetchStaffs());
