@@ -31,7 +31,7 @@ export default function Department(props) {
             {departments.map((item, index) => {
               return (
                 <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
-                  <Link to={`/departments/${item.id}`}>
+                  <Link to={`/department/${item.id}`}>
                     <FadeTransform
                       in
                       transformProps={{

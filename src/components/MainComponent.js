@@ -152,11 +152,12 @@ const Main = () => {
             />
             <Route path="/home/:staffId" component={StaffWithId} />
             <Route
+              exact
               path="/department"
               render={() => <Department departments={DEPARTMENTS} />}
             />
             <Route
-              path="/departments/:departmentId"
+              path="/department/:departmentId"
               render={() => <StaffByDepartment getId={getId} />}
             />
             <Route
