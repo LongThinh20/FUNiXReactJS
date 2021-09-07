@@ -9,17 +9,17 @@ import {
   BreadcrumbItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import Comment from "./CommetForm";
+import CommetForm from "./CommetForm";
 
-function RenderDish(dish) {
+function RenderDish({ dish }) {
   if (dish) {
     return (
       <div>
         <Card>
-          <CardImg src={dish.dish.image} alt={dish.dish.name} />
+          <CardImg src={dish.image} alt={dish.name} />
           <CardBody>
-            <CardTitle>{dish.dish.name}</CardTitle>
-            <CardText>{dish.dish.description}</CardText>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
       </div>
@@ -27,16 +27,16 @@ function RenderDish(dish) {
   } else return <div></div>;
 }
 
-function RenderComments(comments, addComment, dishId) {
+function RenderComments({ comments, addComment, dishId }) {
   if (comments) {
     return (
       <div>
         <Card>
           <CardBody>
             <h2>Comments</h2>
-            {comments.comments.map((item) => (
-              <>
-                <CardText key={item.id}>{item.comment}</CardText>
+            {comments.map((item, index) => (
+              <div key={index}>
+                <CardText>{item.comment}</CardText>
                 <CardText>
                   -- {item.author},{" "}
                   {new Intl.DateTimeFormat("en-US", {
@@ -45,9 +45,9 @@ function RenderComments(comments, addComment, dishId) {
                     day: "2-digit"
                   }).format(new Date(Date.parse(item.date)))}{" "}
                 </CardText>
-              </>
+              </div>
             ))}
-            <Comment
+            <CommetForm
               buttonLabel={"Submit Comment"}
               dishId={dishId}
               addComment={addComment}
@@ -60,9 +60,6 @@ function RenderComments(comments, addComment, dishId) {
 }
 
 const Dishdetail = (props) => {
-  const dish = props.comments;
-  console.log(dish);
-
   return (
     <div className="container">
       <div className="row">
