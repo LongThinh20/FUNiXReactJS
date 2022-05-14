@@ -8,10 +8,10 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
-// import image from "../img/developer-team.png";
+import image from "../img/developer-team.png";
 
 export default function StaffDetail(props) {
-  const { name, doB, startDate, annualLeave, overTime, departmentId, image } =
+  const { name, doB, startDate, annualLeave, overTime, departmentId } =
     props.staff[0] || "";
 
   const renderName = (departmentId) => {

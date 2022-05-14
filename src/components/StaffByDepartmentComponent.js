@@ -10,6 +10,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import image from "../img/developer-team.png";
 
 export default function StaffByDepartment(props) {
   const { getId } = props;
@@ -48,7 +49,7 @@ export default function StaffByDepartment(props) {
                 return (
                   <Row className="mt-4" key={staff.id}>
                     <div className="col-sm-12 col-md-4 col-lg-3">
-                      <img src={staff.image} className="img-fluid" alt="" />
+                      <img src={image} className="img-fluid" alt="" />
                     </div>
                     <div className="col-sm-12 col-md-8 col-lg-9">
                       <Card>

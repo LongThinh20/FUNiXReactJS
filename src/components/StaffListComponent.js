@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import EditStaffModal from "./EditStaffModalComponent";
+import staffImage from "../img/developer-team.png";
 
 export default function StaffList(props) {
   const { staffs, handleDeleteStaff, handleEditStaff, handleResetForm } = props;
@@ -17,7 +18,8 @@ export default function StaffList(props) {
             >
               <Link to={`/home/${staff.id}`}>
                 <Card className="mt-4">
-                  <CardImg src={staff.image} alt={staff.name} />
+                  <CardImg src={staffImage} alt={staff.name} />
+
                   <CardBody>
                     <CardTitle>{staff.name}</CardTitle>
                   </CardBody>
